@@ -6,35 +6,43 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .container {
     margin: 0 auto;
     padding: 20px;
 }
+
 .container-sm {
     max-width: 800px !important;
 }
+
 .navbar {
     display: flex;
     justify-content: flex-end;
     padding: 20px 0;
 }
+
 .nav-links {
     display: flex;
     gap: 20px;
 }
+
 .nav-link {
     color: #e0e0e0;
     text-decoration: none;
     font-size: 16px;
 }
+
 .nav-link:hover {
     color: #ffffff;
 }
+
 .profile {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
 }
+
 .profile-image {
     width: 130px;
     height: 130px;
@@ -42,43 +50,53 @@ body {
     object-fit: cover;
     margin-right: 25px;
 }
+
 .profile-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
 .profile-info h1 {
     font-size: 28px;
     margin: 0 0 10px 0;
 }
+
 .profile-info p {
     font-size: 16px;
     margin: 0 0 10px 0;
 }
+
 .social-icons {
     font-size: 18px;
 }
+
 .social-icons a {
     color: #e0e0e0;
     margin-right: 15px;
     text-decoration: none;
 }
+
 .social-icons a:hover {
     color: #ffffff;
 }
+
 .content {
     background-color: #2a2a2a;
     border-radius: 5px;
     padding: 30px;
 }
+
 h2 {
     font-size: 24px;
     color: #ffffff;
     margin-bottom: 20px;
 }
+
 p {
     font-size: 16px;
 }
+
 /* courier-prime-regular - latin */
 @font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
@@ -86,28 +104,31 @@ p {
     font-style: normal;
     font-weight: 400;
     src: url('/fonts/courier-prime-v9-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-  }
-  /* courier-prime-italic - latin */
-  @font-face {
+}
+
+/* courier-prime-italic - latin */
+@font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Courier Prime';
     font-style: italic;
     font-weight: 400;
     src: url('/fonts/courier-prime-v9-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-  }
-  /* courier-prime-700 - latin */
-  @font-face {
+}
+
+/* courier-prime-700 - latin */
+@font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Courier Prime';
     font-style: normal;
     font-weight: 700;
     src: url('/fonts/courier-prime-v9-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-  }
-  /* courier-prime-700italic - latin */
-  @font-face {
+}
+
+/* courier-prime-700italic - latin */
+@font-face {
     font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Courier Prime';
     font-style: italic;
     font-weight: 700;
     src: url('/fonts/courier-prime-v9-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-  }
+}
