@@ -70,7 +70,7 @@ def get_base(content):
                 ),
                 Div(
                     H1("Florian Brand"),
-                    P("Uni Trier | DFKI"),
+                    P("University of Trier | DFKI"),
                     Div(
                         Icon("fab fa-x-twitter fa-sm", href="www.twitter.com/xceron_", button=False),
                         Icon("fab fa-github fa-sm", href="www.github.com/xceron", button=False),
