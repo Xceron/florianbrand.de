@@ -6,6 +6,9 @@ from fasthtml.common import (
     A,
     Div,
     serve,
+    Br,
+    Span,
+    H3,
     H2,
     H1,
     P,
@@ -42,7 +45,7 @@ exception_handlers = {
     404: not_found
 }
 
-app = FastHTML(hdrs=bst_hdrs + headers, live=False, exception_handlers=exception_handlers)
+app = FastHTML(hdrs=bst_hdrs + headers, live=True, exception_handlers=exception_handlers)
 app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 
 
@@ -121,7 +124,42 @@ def posts():
 
 @app.get("/papers/")
 def papers():
-    return get_base(H1("Papers"))
+    return get_base(
+        (H2("Papers"),
+         Div(
+             H3("2024"),
+             Ul(
+                 Li("Large Language Models as Knowledge Engineers",
+                    Br(),
+                    Span("[",
+                         A("PDF",
+                           href="https://www.wi2.uni-trier.de/shared/publications/2024_ICCBR-WS_LLMInCBR_BrandEtAl.pdf")),
+                    "]",
+                    Span("[", A("DBLP", href="https://dblp.org/rec/conf/iccbr/BrandMB24.html")), "]"),
+             ),
+             H3("2023"),
+             Ul(
+                 Li("Using Deep Reinforcement Learning for the Adaptation of Semantic Workflows",
+                    Br(),
+                    Span("[",
+                         A("PDF",
+                           href="http://www.wi2.uni-trier.de/shared/publications/2023_Brand_RLForAdaptiveWorkflows.pdf")),
+                    "]",
+                    Span("[",
+                         A("DBLP", href="https://dblp.org/rec/conf/iccbr/BrandLM0B23.html")), "]"),
+                 Li("Adaptive Management of Cyber-Physical Workflows by Means of Case-Based Reasoning and Automated Planning",
+                    Br(),
+                    Span("[",
+                         A("PDF",
+                           href="http://www.wi2.uni-trier.de/shared/publications/2023_EDOC_MalburgEtAl_AdaptiveWorkflows_by_CBR_and_Planning.pdf")),
+                    "]",
+                    Span("[",
+                         A("DBLP", href="https://dblp.org/rec/conf/edoc/MalburgBB22")),
+                    "]"
+                    )
+             )
+         ))
+    )
 
 
 @app.get("/posts/{post}")
