@@ -66,7 +66,7 @@ def get_base(content):
             ),
             Div(
                 Image(
-                    "assets/profile_picture.jpeg",
+                    "/assets/profile_picture.jpeg",
                     alt="Florian Brand",
                     cls="profile-image",
                 ),
