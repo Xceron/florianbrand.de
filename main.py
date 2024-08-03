@@ -45,7 +45,7 @@ exception_handlers = {
     404: not_found
 }
 
-app = FastHTML(hdrs=bst_hdrs + headers, live=True, exception_handlers=exception_handlers)
+app = FastHTML(hdrs=bst_hdrs + headers, live=False, exception_handlers=exception_handlers)
 app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 
 
