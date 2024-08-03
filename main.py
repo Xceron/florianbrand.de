@@ -24,11 +24,6 @@ import frontmatter
 
 headers = (
     Link(
-        href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap",
-        rel="stylesheet",
-        type="text/css",
-    ),
-    Link(
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
         rel="stylesheet",
         type="text/css",
