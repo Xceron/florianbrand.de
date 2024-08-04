@@ -34,6 +34,8 @@ headers = (
     StyleX("assets/styles.css"),
     *Socials(title="Florian Brand", description="Florian Brands Personal Site", site_name="florianbrand.de",
              twitter_site="@xceron_", image="", url=""),
+    Meta(name="viewport", content="width=device-width, initial-scale=1, viewport-fit=cover"),
+    Meta(charset="utf-8"),
 )
 
 
@@ -45,7 +47,7 @@ exception_handlers = {
     404: not_found
 }
 
-app = FastHTML(hdrs=bst_hdrs + headers, live=False, exception_handlers=exception_handlers)
+app = FastHTML(hdrs=bst_hdrs + headers, live=False, default_hdrs=False, exception_handlers=exception_handlers)
 app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 
 
