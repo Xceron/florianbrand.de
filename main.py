@@ -1,26 +1,5 @@
 import pathlib
-from fasthtml.common import (
-    Link,
-    FastHTML,
-    Nav,
-    A,
-    Div,
-    serve,
-    Br,
-    Span,
-    H3,
-    H2,
-    H1,
-    P,
-    StyleX,
-    Ul,
-    NotStr,
-    Li,
-    RedirectResponse,
-    StaticFiles,
-    Socials,
-    Title
-)
+from fasthtml.common import *
 from fh_bootstrap import bst_hdrs, Container, Image, Icon, ContainerT
 from markdown import markdown
 import frontmatter
