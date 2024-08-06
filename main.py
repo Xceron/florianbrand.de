@@ -28,6 +28,7 @@ exception_handlers = {
 
 app = FastHTML(hdrs=bst_hdrs + headers, live=False, default_hdrs=False, exception_handlers=exception_handlers)
 app.mount("/assets", StaticFiles(directory="assets"), name="assets")
+app.mount("/posts/img", StaticFiles(directory="posts/img"), name="posts_img")
 
 
 def get_base(content):
@@ -75,7 +76,7 @@ def get_base(content):
     )
 
 
-md_exts = ('codehilite', 'smarty', 'extra', 'sane_lists')
+md_exts = ('codehilite', 'smarty', 'extra', 'attr_list', 'toc')
 
 
 def Markdown(s, exts=md_exts, **kw):
@@ -120,7 +121,7 @@ def papers():
              ),
              H3("2023"),
              Ul(
-                 Li("Using Deep Reinforcement Learning for the Adaptation of Semantic Workflows",
+             Li("Using Deep Reinforcement Learning for the Adaptation of Semantic Workflows",
                     Br(),
                     Span("[",
                          A("PDF",
