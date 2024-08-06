@@ -92,7 +92,7 @@ Therefore, it is not really a problem that LLMs don't have knowledge of FastHTML
 This also applies to htmx, which has been around for over 10 years and is a well-established framework.
 Consequently, the Python code of FastHTML pages is easily readable, which makes learning even easier once you know the basics.
 For the backend, FastHTML builds on top of Starlette and uvicorn, which are both well established with a lot of resources available.
-For instance, when I needed to redirect to the home page on a 404 error, I simply provided Claude with the context that FastHTML uses these frameworks. Claude then generated code using exception handlers and a RedirectResponse ([Code](https://github.com/Xceron/florianbrand.de/blob/146f3bd2dd259559018761d6451fef5f0f08d9c0/main.py#L40)).
+For instance, when I needed to redirect to the home page on a 404 error, I simply provided Claude with the context that FastHTML uses these frameworks. Claude then generated code using exception handlers and a RedirectResponse ([Code](https://github.com/Xceron/florianbrand.de/blob/c273a5ea6e181891685d6d06336edbc5c0a5b93e/main.py#L21)).
 
 Beyond the coding aspects, FastHTML impresses with its minimal resource requirements.
 I run this site on a small VPS (2 vCores, 2GB RAM, more context in the [deployment section](#deployment)).
