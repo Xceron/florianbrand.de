@@ -52,10 +52,10 @@ def get_base(content):
                 ),
                 Div(
                     H1("Florian Brand"),
-                    P("University of Trier | DFKI"),
+                    P("Trier University | DFKI"),
                     Div(
-                        Icon("fab fa-x-twitter fa-sm", href="www.twitter.com/xceron_", button=False),
-                        Icon("fab fa-github fa-sm", href="www.github.com/xceron", button=False),
+                        Icon("fab fa-x-twitter fa-sm", href="https://www.twitter.com/xceron_", button=False),
+                        Icon("fab fa-github fa-sm", href="https://www.github.com/xceron", button=False),
                         Icon("fab fa-linkedin fa-sm", href="https://www.linkedin.com/in/florian-brand-b046b622b/",
                              button=False),
                         Icon("fab fa-discord fa-sm", href="https://discord.com/users/1233745701243195433",
