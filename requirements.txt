@@ -17,7 +17,7 @@ colorama==0.4.6
     # via
     #   click
     #   uvicorn
-fastcore==1.6.1
+fastcore==1.6.3
     # via
     #   fastlite
     #   fh-bootstrap
@@ -52,12 +52,12 @@ python-dateutil==2.9.0.post0
     # via python-fasthtml
 python-dotenv==1.0.1
     # via uvicorn
-python-fasthtml==0.2.1
+python-fasthtml==0.2.4
     # via fh-bootstrap
 python-frontmatter==1.1.0
 python-multipart==0.0.9
     # via python-fasthtml
-pyyaml==6.0.1
+pyyaml==6.0.2
     # via
     #   python-frontmatter
     #   uvicorn
@@ -75,7 +75,7 @@ starlette==0.38.2
     # via python-fasthtml
 uvicorn==0.30.5
     # via python-fasthtml
-watchfiles==0.22.0
+watchfiles==0.23.0
     # via uvicorn
 websockets==12.0
     # via uvicorn

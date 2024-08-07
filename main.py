@@ -19,7 +19,8 @@ headers = (
 
 
 async def not_found(request, exc):
-    return RedirectResponse(url="/")
+    return get_base((H2("404 - Not Found"),
+                    P("Return to ", A("home", href="/"))))
 
 
 exception_handlers = {
