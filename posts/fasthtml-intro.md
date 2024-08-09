@@ -182,5 +182,5 @@ I will watch the development of FastHTML closely and can't wait to see where the
 
 [^pycharm]: Alternatively, you can use VSCode/Cursor or run it in your terminal, which all work perfectly fine with live reloading, also on Windows.
 [^imports]: There is an [example](https://github.com/AnswerDotAI/fasthtml/blob/main/examples/pep8_app.py) of a PEP8 conform app.py with `from fasthtml import common as fh`, which then results in a lot of `fh.` in the code, making it less readable. Alternatively, you could also import every used HTML tag, but this results in ~20 lines of imports rather quickly.
-[^usage] Screenshot done with the amazing [lazydocker](https://github.com/jesseduffield/lazydocker) tool
+[^usage]: Screenshot done with the amazing [lazydocker](https://github.com/jesseduffield/lazydocker) tool
 [^docker]: The Dockerfile uses [uv](https://github.com/astral-sh/uv) to install the python dependencies instead of pip. uv is much faster than pip, but is not part of the Docker images, so it has to be installed first.
