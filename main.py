@@ -1,8 +1,11 @@
 import pathlib
 from fasthtml.common import *
 from fh_bootstrap import bst_hdrs, Container, Image, Icon, ContainerT
-from markdown import markdown
 import frontmatter
+from markdown_it import MarkdownIt
+from mdit_py_plugins.front_matter import front_matter_plugin
+from mdit_py_plugins.footnote import footnote_plugin
+from mdit_py_plugins.anchors import anchors_plugin
 
 headers = (
     Link(
@@ -20,7 +23,7 @@ headers = (
 
 async def not_found(request, exc):
     return get_base((H2("404 - Not Found"),
-                    P("Return to ", A("home", href="/"))))
+                     P("Return to ", A("home", href="/"))))
 
 
 exception_handlers = {
@@ -77,19 +80,21 @@ def get_base(content):
     )
 
 
-md_exts = ('codehilite', 'smarty', 'extra', 'attr_list', 'toc')
-
-
-def Markdown(s, exts=md_exts, **kw):
-    # https://github.com/AnswerDotAI/fh-about/blob/7e5109c26ba2f4fcba897cc83add6ee74621ed20/app.py#L6
-    return Div(NotStr(markdown(s, extensions=exts)), **kw)
+def Markdown(s):
+    md = (
+        MarkdownIt("commonmark")
+        .use(anchors_plugin, min_level=2, permalink=True, permalinkSymbol="#", permalinkBefore=True)
+        .use(footnote_plugin)
+        .use(front_matter_plugin)
+    )
+    return Div(NotStr(md.render(s)))
 
 
 @app.get("/")
 def home():
     with open('main.md', 'r') as file:
         content = file.read()
-    return get_base(Markdown(content))
+    return get_base((H2("About"), Markdown(content)))
 
 
 @app.get("/posts/")
@@ -98,7 +103,7 @@ def posts():
     blog_files = [file.stem for file in blog_dir.glob("*.md")]
     links = []
     for file in blog_files:
-        with open(f"posts/{file}.md", 'r') as post_file:
+        with open(f"posts/{file}.md", "r") as post_file:
             content = frontmatter.load(post_file)
             if not content["draft"]:
                 links.append(Li(content["date"], A(content["title"], href=f"/posts/{file}")))
@@ -122,7 +127,7 @@ def papers():
              ),
              H3("2023"),
              Ul(
-             Li("Using Deep Reinforcement Learning for the Adaptation of Semantic Workflows",
+                 Li("Using Deep Reinforcement Learning for the Adaptation of Semantic Workflows",
                     Br(),
                     Span("[",
                          A("PDF",
