@@ -96,3 +96,19 @@ h2 {
 p {
     font-size: 16px;
 }
+
+img {
+    max-width: 100%;
+}
+
+a {
+  color: #4dd0e1;
+}
+
+code {
+    color: #ff7f50;
+}
+
+.header-anchor {
+    text-decoration: none;
+}
