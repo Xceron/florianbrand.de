@@ -1,5 +1,6 @@
 import pathlib
 from fasthtml.common import *
+from fasthtml.js import HighlightJS
 from fh_bootstrap import bst_hdrs, Container, Image, Icon, ContainerT
 import frontmatter
 from markdown_it import MarkdownIt
@@ -14,10 +15,8 @@ headers = (
         type="text/css",
     ),
     StyleX("assets/styles.css"),
-    StyleX("assets/prism-a11y-dark.css"),
-    Script(src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"),
-    Script(src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"),
-    Script("Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/'"),
+    Script(src="https://unpkg.com/htmx.org@next/dist/htmx.min.js"),
+    *HighlightJS(langs=["python", "html", "yaml"], dark="a11y-dark"),
     *Socials(title="Florian Brand", description="Florian Brands Personal Site", site_name="florianbrand.de",
              twitter_site="@xceron_", image="", url=""),
     Meta(name="viewport", content="width=device-width, initial-scale=1, viewport-fit=cover"),
