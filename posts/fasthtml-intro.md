@@ -29,7 +29,8 @@ Aside from the technology, using FastHTML feels like using PHP, as you write the
 from fasthtml.common import *
 page = Html(
     Head(Title('Some page')),
-    Body(Div('Some text, ', A('A link', href='https://example.com'), cls='myclass')))
+    Body(Div('Some text, ', A('A link', href='https://example.com'), 
+             cls='myclass')))
 print(to_xml(page))
 ```
 
@@ -145,7 +146,7 @@ The process to deploy the site is as follows:
 
 
 The `Caddyfile` for an exemplary page at `yourpage.com` would look like this:
-```
+```Caddy
 YOURPAGE.com, www.YOURPAGE.com {
     reverse_proxy fasthtml-app:5001
 }
