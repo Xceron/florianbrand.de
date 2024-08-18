@@ -117,7 +117,9 @@ def posts():
 @app.get("/papers/")
 def papers():
     return get_base(
-        (H2("Papers"),
+        (*Socials(title="PAPER PAGE TEST", description="SOCIALS TEST", site_name="florianbrand.de",
+                   twitter_site="@xceron_", image="", url=""),
+        H2("Papers"),
          Div(
              H3("2024"),
              Ul(
