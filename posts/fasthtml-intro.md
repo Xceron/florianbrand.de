@@ -1,6 +1,7 @@
 ---
 title: How FastHTML sparked my joy in web development
 categories: [web, fasthtml]
+summary: Buiding a personal site with FastHTML
 date: 2024-08-04
 draft: False
 ---

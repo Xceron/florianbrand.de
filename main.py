@@ -96,7 +96,14 @@ def Markdown(s):
 def home():
     with open('main.md', 'r') as file:
         content = file.read()
-    return get_base((H2("About"), Markdown(content)))
+    return get_base(
+        (*Socials(title="Florian Brand",
+                  description="Florian Brand's personal website",
+                  site_name="florianbrand.de",
+                  twitter_site="@xceron_",
+                  image=""),
+         H2("About"), Markdown(content))
+    )
 
 
 @app.get("/posts/")
@@ -109,15 +116,24 @@ def posts():
             content = frontmatter.load(post_file)
             if not content["draft"]:
                 links.append(Li(content["date"], A(content["title"], href=f"/posts/{file}")))
-    return get_base(Div(H2("Posts"), Ul(*links)))
+    return get_base(
+        (*Socials(title="Florian Brand - Posts",
+                  description="Florian Brand's posts",
+                  site_name="florianbrand.de",
+                  twitter_site="@xceron_",
+                  image=""),
+         Div(H2("Posts"), Ul(*links))))
 
 
 @app.get("/papers/")
 def papers():
     return get_base(
-        (*Socials(title="PAPER PAGE TEST", description="SOCIALS TEST", site_name="florianbrand.de",
-                   twitter_site="@xceron_", image="", url=""),
-        H2("Papers"),
+        (*Socials(title="Florian Brand - Papers",
+                  description="Florian Brand's papers",
+                  site_name="florianbrand.de",
+                  twitter_site="@xceron_",
+                  image=""),
+         H2("Papers"),
          Div(
              H3("2024"),
              Ul(
@@ -162,7 +178,13 @@ def get_post(post: str):
     md_file = frontmatter.load(post_path)
     if md_file["draft"]:
         return RedirectResponse(url="/")
-    return get_base(Markdown(md_file.content))
+    return get_base(
+        (*Socials(title=md_file["title"],
+                  description=md_file["summary"],
+                  site_name="florianbrand.de",
+                  twitter_site="@xceron_",
+                  image=md_file["image"] if "image" in md_file else ""),
+        Markdown(md_file.content)))
 
 
 if __name__ == "__main__":
