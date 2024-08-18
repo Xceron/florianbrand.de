@@ -17,9 +17,7 @@ headers = (
     StyleX("assets/styles.css"),
     Script(src="https://unpkg.com/htmx.org@next/dist/htmx.min.js"),
     *HighlightJS(langs=["python", "html", "yaml"], dark="a11y-dark"),
-    Favicon("assets/favicon.ico", "assets/favicon.ico"),
-    *Socials(title="Florian Brand", description="Florian Brands Personal Site", site_name="florianbrand.de",
-             twitter_site="@xceron_", image="", url=""),
+    Favicon("/assets/favicon.ico", "/assets/favicon.ico"),
     Meta(name="viewport", content="width=device-width, initial-scale=1, viewport-fit=cover"),
     Meta(charset="utf-8"),
 )
