@@ -1,17 +1,9 @@
 FROM python:3.12-slim
+COPY --from=ghcr.io/astral-sh/uv:0.3.1 /uv /bin/uv
 
-# install curl for uv
-RUN apt-get update && apt-get install -y --no-install-recommends curl \
-    && rm -rf /var/lib/apt/lists/* \
-    && curl -LsSf https://astral.sh/uv/install.sh | sh \
-    && mv /root/.cargo/bin/uv /usr/local/bin/uv
-
+ADD . /app
 WORKDIR /app
 
-COPY requirements.txt .
+RUN uv sync
 
-RUN uv pip install --system --no-cache -r requirements.txt
-
-COPY . .
-
-CMD ["python", "main.py"]
+CMD ["uv", "run", "main.py"]
