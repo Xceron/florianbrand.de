@@ -112,3 +112,14 @@ code {
 .header-anchor {
     text-decoration: none;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 2px solid white;
+    padding: 8px;
+    text-align: left;
+}

@@ -16,7 +16,7 @@ headers = (
     ),
     StyleX("assets/styles.css"),
     Script(src="https://unpkg.com/htmx.org@next/dist/htmx.min.js"),
-    *HighlightJS(langs=["python", "html", "yaml"], dark="a11y-dark"),
+    *HighlightJS(langs=["python", "html", "yaml", "bash", "sh", "powershell", "dockerfile"], dark="a11y-dark"),
     Favicon("/assets/favicon.ico", "/assets/favicon.ico"),
     Meta(name="viewport", content="width=device-width, initial-scale=1, viewport-fit=cover"),
     Meta(charset="utf-8"),
@@ -85,6 +85,7 @@ def get_base(content):
 def Markdown(s):
     md = (
         MarkdownIt("commonmark")
+        .enable("table")
         .use(anchors_plugin, min_level=2, permalink=True, permalinkSymbol="#", permalinkBefore=True)
         .use(footnote_plugin)
         .use(front_matter_plugin)
