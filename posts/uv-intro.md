@@ -1,7 +1,7 @@
 ---
-title: uv
+title: Sane Python dependency management with uv
 categories: [tools, til]
-summary: Buiding a personal site with FastHTML
+summary: An overview of uv, the fast package manager
 date: 2024-08-23
 draft: False
 ---
