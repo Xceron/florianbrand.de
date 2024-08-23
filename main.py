@@ -114,8 +114,9 @@ def posts():
     for file in blog_files:
         with open(f"posts/{file}.md", "r") as post_file:
             content = frontmatter.load(post_file)
-            if not content["draft"]:
+            if "draft" in content and not content["draft"]:
                 links.append(Li(content["date"], A(content["title"], href=f"/posts/{file}")))
+    links = sorted(links, key=lambda x: x[0], reverse=True)
     return get_base(
         (*Socials(title="Florian Brand - Posts",
                   description="Florian Brand's posts",
