@@ -110,7 +110,7 @@ dependencies = [
 requires-dist = [
     { name = "fh-bootstrap", specifier = ">=0.0.3" },
     { name = "markdown-it-py", extras = ["plugins"], specifier = ">=3.0.0" },
-    { name = "python-fasthtml", specifier = ">=0.5.2" },
+    { name = "python-fasthtml", specifier = ">=0.6.4" },
     { name = "python-frontmatter", specifier = ">=1.1.0" },
 ]
 
