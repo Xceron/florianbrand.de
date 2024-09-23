@@ -1,5 +1,6 @@
 import pathlib
 from fasthtml.common import *
+from fasthtml.core import FtResponse
 from fasthtml.js import HighlightJS
 from fh_bootstrap import bst_hdrs, Container, Image, Icon, ContainerT
 import frontmatter
@@ -30,7 +31,10 @@ headers = (
 
 
 async def not_found(request, exc):
-    return get_base((H2("404 - Not Found"), P("Return to ", A("home", href="/"))))
+    return FtResponse(
+        status_code=404,
+        content=get_base((H2("404 - Not Found"), P("Return to ", A("home", href="/")))),
+    )
 
 
 exception_handlers = {404: not_found}
