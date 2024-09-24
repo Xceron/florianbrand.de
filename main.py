@@ -158,7 +158,7 @@ def posts():
             content = frontmatter.load(post_file)
             if "draft" in content and not content["draft"]:
                 links.append(
-                    Li(content["date"], A(content["title"], href=f"/posts/{file}"))
+                    Li(content["date"], " ", A(content["title"], href=f"/posts/{file}"))
                 )
     links = sorted(links, key=lambda x: x[0], reverse=True)
     return get_base(
