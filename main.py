@@ -24,13 +24,10 @@ headers = (
 
 
 async def not_found(request, exc):
-    return get_base((H2("404 - Not Found"),
-                     P("Return to ", A("home", href="/"))))
+    return get_base((H2("404 - Not Found"), P("Return to ", A("home", href="/"))))
 
 
-exception_handlers = {
-    404: not_found
-}
+exception_handlers = {404: not_found}
 
 app = FastHTML(hdrs=bst_hdrs + headers, live=False, default_hdrs=False, exception_handlers=exception_handlers)
 app.mount("/assets", StaticFiles(directory="assets"), name="assets")
@@ -62,10 +59,14 @@ def get_base(content):
                     Div(
                         Icon("fab fa-x-twitter fa-sm", href="https://www.twitter.com/xceron_", button=False),
                         Icon("fab fa-github fa-sm", href="https://www.github.com/xceron", button=False),
-                        Icon("fab fa-linkedin fa-sm", href="https://www.linkedin.com/in/florian-brand-b046b622b/",
-                             button=False),
-                        Icon("fab fa-discord fa-sm", href="https://discord.com/users/1233745701243195433",
-                             button=False),
+                        Icon(
+                            "fab fa-linkedin fa-sm",
+                            href="https://www.linkedin.com/in/florian-brand-b046b622b/",
+                            button=False,
+                        ),
+                        Icon(
+                            "fab fa-discord fa-sm", href="https://discord.com/users/1233745701243195433", button=False
+                        ),
                         Icon("fas fa-at fa-sm", href="mailto:hello@florianbrand.de", button=False),
                         cls="social-icons",
                     ),
@@ -78,7 +79,7 @@ def get_base(content):
                 cls="content",
             ),
             typ=ContainerT.Sm,
-        )
+        ),
     )
 
 
@@ -95,15 +96,20 @@ def Markdown(s):
 
 @app.get("/")
 def home():
-    with open('main.md', 'r') as file:
+    with open("main.md", "r") as file:
         content = file.read()
     return get_base(
-        (*Socials(title="Florian Brand",
-                  description="Florian Brand's personal website",
-                  site_name="florianbrand.de",
-                  twitter_site="@xceron_",
-                  image=""),
-         H2("About"), Markdown(content))
+        (
+            *Socials(
+                title="Florian Brand",
+                description="Florian Brand's personal website",
+                site_name="florianbrand.de",
+                twitter_site="@xceron_",
+                image="",
+            ),
+            H2("About"),
+            Markdown(content),
+        )
     )
 
 
@@ -116,59 +122,85 @@ def posts():
         with open(f"posts/{file}.md", "r") as post_file:
             content = frontmatter.load(post_file)
             if "draft" in content and not content["draft"]:
-                links.append(Li(content["date"], A(content["title"], href=f"/posts/{file}")))
+                links.append(Li(content["date"], " ", A(content["title"], href=f"/posts/{file}")))
     links = sorted(links, key=lambda x: x[0], reverse=True)
     return get_base(
-        (*Socials(title="Florian Brand - Posts",
-                  description="Florian Brand's posts",
-                  site_name="florianbrand.de",
-                  twitter_site="@xceron_",
-                  image=""),
-         Div(H2("Posts"), Ul(*links))))
+        (
+            *Socials(
+                title="Florian Brand - Posts",
+                description="Florian Brand's posts",
+                site_name="florianbrand.de",
+                twitter_site="@xceron_",
+                image="",
+            ),
+            Div(H2("Posts"), Ul(*links)),
+        )
+    )
 
 
 @app.get("/papers/")
 def papers():
     return get_base(
-        (*Socials(title="Florian Brand - Papers",
-                  description="Florian Brand's papers",
-                  site_name="florianbrand.de",
-                  twitter_site="@xceron_",
-                  image=""),
-         H2("Papers"),
-         Div(
-             H3("2024"),
-             Ul(
-                 Li("Large Language Models as Knowledge Engineers",
-                    Br(),
-                    Span("[",
-                         A("PDF",
-                           href="https://www.wi2.uni-trier.de/shared/publications/2024_ICCBR-WS_LLMInCBR_BrandEtAl.pdf")),
-                    "]",
-                    Span("[", A("DBLP", href="https://dblp.org/rec/conf/iccbr/BrandMB24.html")), "]"),
-             ),
-             H3("2023"),
-             Ul(
-                 Li("Using Deep Reinforcement Learning for the Adaptation of Semantic Workflows",
-                    Br(),
-                    Span("[",
-                         A("PDF",
-                           href="http://www.wi2.uni-trier.de/shared/publications/2023_Brand_RLForAdaptiveWorkflows.pdf")),
-                    "]",
-                    Span("[",
-                         A("DBLP", href="https://dblp.org/rec/conf/iccbr/BrandLM0B23.html")), "]"),
-                 Li("Adaptive Management of Cyber-Physical Workflows by Means of Case-Based Reasoning and Automated Planning",
-                    Br(),
-                    Span("[",
-                         A("PDF",
-                           href="http://www.wi2.uni-trier.de/shared/publications/2023_EDOC_MalburgEtAl_AdaptiveWorkflows_by_CBR_and_Planning.pdf")),
-                    "]",
-                    Span("[",
-                         A("DBLP", href="https://dblp.org/rec/conf/edoc/MalburgBB22")),
-                    "]"
-                    )
-             )
-         ))
+        (
+            *Socials(
+                title="Florian Brand - Papers",
+                description="Florian Brand's papers",
+                site_name="florianbrand.de",
+                twitter_site="@xceron_",
+                image="",
+            ),
+            H2("Papers"),
+            Div(
+                H3("2024"),
+                Ul(
+                    Li(
+                        "Large Language Models as Knowledge Engineers",
+                        Br(),
+                        Span(
+                            "[",
+                            A(
+                                "PDF",
+                                href="https://www.wi2.uni-trier.de/shared/publications/2024_ICCBR-WS_LLMInCBR_BrandEtAl.pdf",
+                            ),
+                        ),
+                        "]",
+                        Span("[", A("DBLP", href="https://dblp.org/rec/conf/iccbr/BrandMB24.html")),
+                        "]",
+                    ),
+                ),
+                H3("2023"),
+                Ul(
+                    Li(
+                        "Using Deep Reinforcement Learning for the Adaptation of Semantic Workflows",
+                        Br(),
+                        Span(
+                            "[",
+                            A(
+                                "PDF",
+                                href="https://www.wi2.uni-trier.de/shared/publications/2023_Brand_RLForAdaptiveWorkflows.pdf",
+                            ),
+                        ),
+                        "]",
+                        Span("[", A("DBLP", href="https://dblp.org/rec/conf/iccbr/BrandLM0B23.html")),
+                        "]",
+                    ),
+                    Li(
+                        "Adaptive Management of Cyber-Physical Workflows by Means of Case-Based Reasoning and Automated Planning",
+                        Br(),
+                        Span(
+                            "[",
+                            A(
+                                "PDF",
+                                href="https://www.wi2.uni-trier.de/shared/publications/2023_EDOC_MalburgEtAl_AdaptiveWorkflows_by_CBR_and_Planning.pdf",
+                            ),
+                        ),
+                        "]",
+                        Span("[", A("DBLP", href="https://dblp.org/rec/conf/edoc/MalburgBB22")),
+                        "]",
+                    ),
+                ),
+            ),
+        )
     )
 
 
@@ -181,12 +213,17 @@ def get_post(post: str):
     if md_file["draft"]:
         return RedirectResponse(url="/")
     return get_base(
-        (*Socials(title=md_file["title"],
-                  description=md_file["summary"],
-                  site_name="florianbrand.de",
-                  twitter_site="@xceron_",
-                  image=md_file["image"] if "image" in md_file else ""),
-        Markdown(md_file.content)))
+        (
+            *Socials(
+                title=md_file["title"],
+                description=md_file["summary"],
+                site_name="florianbrand.de",
+                twitter_site="@xceron_",
+                image=md_file["image"] if "image" in md_file else "",
+            ),
+            Markdown(md_file.content),
+        )
+    )
 
 
 if __name__ == "__main__":
