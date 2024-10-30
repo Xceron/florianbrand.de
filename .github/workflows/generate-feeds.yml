@@ -1,3 +1,4 @@
+# .github/workflows/generate-feeds.yml
 name: Generate RSS Feeds
 
 on:
@@ -48,4 +49,4 @@ jobs:
   trigger-docker-build:
     needs: build
     if: needs.build.outputs.feed_updated == 'true'
-    uses: ./.github/workflows/docker-build-push.yml@main
+    uses: ./.github/workflows/docker-build-push.yml
