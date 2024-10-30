@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-  <id>https://florianbrand.de</id>
-  <title>Florian Brand - Blog</title>
-  <updated>2024-10-30T19:34:46.382591+00:00</updated>
+  <id>https://florianbrand.de/</id>
+  <title>Florian Brand</title>
+  <updated>2024-10-30T20:17:21.937862+00:00</updated>
   <author>
     <name>Florian Brand</name>
     <email>privat@florianbrand.de</email>
@@ -11,11 +11,11 @@
   <link href="https://florianbrand.de" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
   <rights>All rights reserved 2024, Florian Brand</rights>
-  <subtitle>Florian Brand - Blog</subtitle>
+  <subtitle>Florian Brand</subtitle>
   <entry>
     <id>https://florianbrand.de/posts/fasthtml-intro</id>
     <title>How FastHTML sparked my joy in web development</title>
-    <updated>2024-10-30T19:34:46.416667+00:00</updated>
+    <updated>2024-10-30T20:17:21.970366+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -127,7 +127,7 @@ Hitting the front page of hackernews and handling it without breaking a sweat, h
 </li>
 </ul>
 <h2 id="deployment">Deployment</h2>
-<p>I've deployed the site on a VPS from netcup. For just â‚¬3.99 per month, I get 2 vCores, 2GB RAM, and a 64GB SSD (<a href="https://www.netcup.eu/bestellen/produkt.php?produkt=3899">link</a>). 
+<p>I've deployed the site on a VPS from netcup. For just €3.99 per month, I get 2 vCores, 2GB RAM, and a 64GB SSD (<a href="https://www.netcup.eu/bestellen/produkt.php?produkt=3899">link</a>). 
 This is a fantastic deal, especially when compared to cloud providers like AWS. 
 These services often charge 3-5 times more for similar resources and can be more complex to set up. Platform-as-a-Service (PaaS) options like Railway, Heroku, and Vercel are easier-to-use alternatives, but they can become costly if your site experiences high traffic.
 Personally, I find easier to manage and use a VPS, which I can ssh into to set up my things, such as this blog, compared to a service which tries to abstract this away from me. </p>
@@ -207,7 +207,7 @@ I will watch the development of FastHTML closely and can't wait to see where the
   <entry>
     <id>https://florianbrand.de/posts/uv-intro</id>
     <title>Sane Python dependency management with uv</title>
-    <updated>2024-10-30T19:34:46.383601+00:00</updated>
+    <updated>2024-10-30T20:17:21.938522+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
