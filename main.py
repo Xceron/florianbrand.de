@@ -57,6 +57,7 @@ def get_base(content):
                     H1("Florian Brand"),
                     P("Trier University | DFKI"),
                     Div(
+                        Icon("fas fa-rss fa-sm", href="/feeds/atom.xml", button=False),
                         Icon("fab fa-x-twitter fa-sm", href="https://www.twitter.com/xceron_", button=False),
                         Icon("fab fa-github fa-sm", href="https://www.github.com/xceron", button=False),
                         Icon(
@@ -112,9 +113,11 @@ def home():
         )
     )
 
+
 @app.get("/feeds/atom.xml")
 def atom_feed():
     return FileResponse("feeds/atom.xml")
+
 
 @app.get("/posts/")
 def posts():
