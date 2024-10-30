@@ -112,6 +112,9 @@ def home():
         )
     )
 
+@app.get("/feeds/atom.xml")
+def atom_feed():
+    return FileResponse("feeds/atom.xml")
 
 @app.get("/posts/")
 def posts():
