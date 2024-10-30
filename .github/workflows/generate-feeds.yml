@@ -1,4 +1,3 @@
-# .github/workflows/generate-feeds.yml
 name: Generate RSS Feeds
 
 on:
@@ -30,7 +29,7 @@ jobs:
           pip install feedgen python-frontmatter markdown python-dateutil pytz
 
       - name: Generate feeds
-        run: python main.py
+        run: python feeds.py
 
       - name: Commit and push if changed
         id: commit
@@ -49,4 +48,7 @@ jobs:
   trigger-docker-build:
     needs: build
     if: needs.build.outputs.feed_updated == 'true'
+    permissions:
+      contents: read
+      packages: write
     uses: ./.github/workflows/docker-build-push.yml
