@@ -8,6 +8,8 @@ dependencies = [
     "python-frontmatter>=1.1.0",
     "markdown-it-py[plugins]>=3.0.0",
     "python-fasthtml>=0.6.4",
+    "feedgen>=1.0.0",
+    "pytz>=2024.2",
 ]
 
 [tool.setuptools.packages.find]

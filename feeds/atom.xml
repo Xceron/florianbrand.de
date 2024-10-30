@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://florianbrand.de</id>
+  <title>Florian Brand - Blog</title>
+  <updated>2024-10-30T19:29:20.969533+00:00</updated>
+  <author>
+    <name>Florian Brand</name>
+    <email>privat@florianbrand.de</email>
+    <uri>https://florianbrand.de</uri>
+  </author>
+  <link href="https://florianbrand.de" rel="alternate"/>
+  <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
+  <rights>All rights reserved 2024, Florian Brand</rights>
+  <subtitle>Florian Brand - Blog</subtitle>
+  <entry>
+    <id>https://florianbrand.de/posts/fasthtml-intro</id>
+    <title>How FastHTML sparked my joy in web development</title>
+    <updated>2024-10-30T19:29:21.003561+00:00</updated>
+    <author>
+      <name>Florian Brand</name>
+      <email>privat@florianbrand.de</email>
+    </author>
+    <content type="CDATA"><![CDATA[<h1 id="how-fasthtml-sparked-my-joy-in-web-development">How FastHTML sparked my joy in web development</h1>
+<p>I've been wanting to create a personal site for a while now. 
+Nowadays, there are basically two options: Either build a full-scale web project with JavaScript/TypeScript and React/NextJS or using a static site generator like Jekyll or Hugo. 
+The first option can become overwhelmingly complex, especially for someone like me, who is not a web developer.
+It feels like everyone prefers (and recommends) the most sophisticated setup to accomplish something, even if it should be rather simple in principle.
+For instance, you should use Typescript over JavaScript and transpile the code, use a huge framework like NextJS, bun over npm, and so on.
+Even something as simple as styling a site is overloaded with <a href="https://nextjs.org/docs/app/building-your-application/styling">so many options</a> of varying complexity, that it is hard as an outsider to get started.</p>
+<p>Naturally, this lead me to the latter, with me trying out <a href="https://gohugo.io/">Hugo</a>, which is a static site generator.
+That means that you install the hugo binary, write your content in markdown, and then run <code>hugo</code> to generate the site, resulting in plain HTML files.
+The setup is easy and in mere minutes, a static site is created and running.
+Hugo has a lot of third-party <a href="https://themes.gohugo.io/">themes</a>, which can be easily installed and used.
+However, Hugo requires you to conform to their setup, minimizing the flexibility of the site.
+Furthermore, debugging errors is hard, as a lot of things are abstracted away from the user.</p>
+<p>As luck would have it, just as I was looking for alternatives to these problems, the Answer.ai team around Jeremy Howard released <a href="https://fastht.ml/">FastHTML</a>, which is described as "a new way to create modern interactive web apps".
+FastHTML is built on top of <a href="https://www.starlette.io/">Starlette</a> and <a href="https://www.uvicorn.org/">uvicorn</a>, meaning people which are familiar with FastAPI will feel right at home.
+Aside from the technology, using FastHTML feels like using PHP, as you write the HTML tags using Python, with each tag being a simple function:</p>
+<pre class="codehilite"><code class="language-python">from fasthtml.common import *
+page = Html(
+    Head(Title('Some page')),
+    Body(Div('Some text, ', A('A link', href='https://example.com'), 
+             cls='myclass')))
+print(to_xml(page))
+</code></pre>
+
+<p>This simple example is easily readable and understandable, which results in this HTML code:</p>
+<pre class="codehilite"><code class="language-html">&lt;!doctype html&gt;
+
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Some page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class=&quot;myclass&quot;&gt;
+Some text, 
+      &lt;a href=&quot;https://example.com&quot;&gt;A link&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>FastHTML is more than just a simple HTML generator, as it also offers a full-blown webserver with routing, making it pretty easy to start a simple site with very little code and then scale it up as needed.
+For interactivity, they support <a href="https://htmx.org/">htmx</a>, which, as an outsider to the JS world, feels more intuitive than other frameworks, as it adds attributes to the HTML tags for interactivity.
+This site is built with FastHTML, with the whole code being available <a href="https://github.com/Xceron/florianbrand.de">on GitHub</a>.</p>
+<p>Now that we've covered the basics, let me share my personal experiences with this new framework.</p>
+<h2 id="initial-hurdles">Initial Hurdles</h2>
+<p>Being a new framework, FastHTML naturally has less (third-party) resources to learn the ins and outs of the framework.
+However, the community is growing fast, with multiple projects and examples showing the usage of the library few days after the initial release.
+I have compiled a small list <a href="#resources">down below</a>.</p>
+<p>While coding in FastHTML, I ran into a few quirks. 
+One that stood out was a bug in PyCharm related to the live reload feature. 
+FastHTML normally lets you see changes instantly when you save a file, which is very convenient for local development. 
+But in PyCharm, this feature does not work correctly, as changes either don't apply or take ages to show up. 
+Turns out it's a <a href="https://youtrack.jetbrains.com/issue/PY-60962/os.killpid-signal.CRTLCEVENT-ignored-when-running-python-program-from-Pycharm">known bug</a>, which is not yet fixed.
+A workaround is to open the run configuration and enabling the option <code>Emulate terminal in output console</code> (hidden under <code>Modify options</code>).<sup id="fnref:pycharm"><a class="footnote-ref" href="#fn:pycharm">1</a></sup>
+This will, however, make the terminal output harder to read, as the ANSI escape sequences, which are used for colored output, are displayed and not rendered.
+<img alt="img" src="img/fasthtml-intro-ansi.png" /></p>
+<p>Speaking of editors: At first glance, FastHTML code looks unconventional in a Python editor.
+This unconventional look is due to two main factors. First, the recommended way to import most of FastHTMLs' functionality with <code>from fasthtml.common import *</code>. Second, the fact that (nested) HTML tags take up a lot of space rather fast means that they take up a lot of visual space.
+The first issue results in linters like pylance or ruff not liking the code, as PEP8 recommends to import only the needed functions<sup id="fnref:imports"><a class="footnote-ref" href="#fn:imports">2</a></sup>.
+To illustrate the second issue, here is some code of the FastHTML landing page:
+<img alt="img" src="img/fasthtml-intro-code.png" /></p>
+<p>While it is valid code, it <em>feels</em> weird to see inside a Python file and gets some time to get used to.</p>
+<p>Overall, these are not really issues in the power of the AnswerAI team, which underlines how great the framework already is and the overall potential of FastHTML.</p>
+<h2 id="becoming-productive-with-fasthtml">Becoming productive with FastHTML</h2>
+<p>Admittedly, I needed some time to get started with FastHTML.
+This is not a problem of the framework, as my capabilities as a web developer are rather limited and I am a bit rusty when it comes to writing "pure" HTML/CSS.
+But after it clicked, it truly is pleasant to use and you can iterate very fast.
+For the frontend/HTML, my workflow is making a screenshot of the current page, drawing on top of it with changes I want to apply, and then giving this screenshot with the generated HTML and CSS file to Claude.
+Claude then generates the changes by writing HTML, which I then convert with <a href="https://h2f.answer.ai/">h2f.answer.ai</a> and add to my Python file.
+Therefore, it is not really a problem that LLMs don't have knowledge of FastHTML, because it is so close to just HTML.
+This also applies to htmx, which has been around for over 10 years and is a well-established framework.
+Consequently, the Python code of FastHTML pages is easily readable, which makes learning even easier once you know the basics.
+For the backend, FastHTML builds on top of Starlette and uvicorn, which are both well established with a lot of resources available.
+For instance, when I needed to redirect to the home page on a 404 error, I simply provided Claude with the context that FastHTML uses these frameworks. Claude then generated code using exception handlers and a RedirectResponse (<a href="https://github.com/Xceron/florianbrand.de/blob/c273a5ea6e181891685d6d06336edbc5c0a5b93e/main.py#L21">Code</a>).</p>
+<p>Beyond the coding aspects, FastHTML impresses with its minimal resource requirements.
+I run this site on a small VPS (2 vCores, 2GB RAM, more context in the <a href="#deployment">deployment section</a>).
+When idle, the usage looks like this<sup id="fnref:usage"><a class="footnote-ref" href="#fn:usage">3</a></sup>:
+<img alt="img" src="img/fasthtml-intro-lzd.png" /></p>
+<p>Of course the idle state of a small site is not impressive.
+Hitting the front page of hackernews and handling it without breaking a sweat, however, is:
+<img alt="img" src="img/fasthtml-intro-jh-tweet.png" /></p>
+<h2 id="resources">Resources</h2>
+<p>There are already some amazing resources to get started with FastHTML:</p>
+<ul>
+<li>Official materials<ul>
+<li>The comprehensive <a href="https://docs.fastht.ml/">documentation</a></li>
+<li>The <a href="https://youtu.be/Auqrm7WFc0I?si=gzU0fe2kcdXwpAX7">introduction video</a> from Jeremy Howard, offering a general overview</li>
+<li>An <a href="https://youtu.be/WuipZMUch18">interview</a> with the HTMX creator Carson Gross, offering a look into the interactivity provided by HTMX and their vision of the framework(s)</li>
+</ul>
+</li>
+<li>Tutorial content<ul>
+<li>CalmCode's <a href="https://youtu.be/4En57Zw6gU4?si=ehYOIhzdYj0itouf">video tutorial</a> on building interactive charts with matplotlib and htmx</li>
+<li>A <a href="https://gist.github.com/jph00/26200368915f6aabb450eaf33a03c3e8">heavily commented example</a>, perfect for providing context to a LLM</li>
+</ul>
+</li>
+<li>Tools and examples<ul>
+<li><a href="https://h2f.answer.ai/">h2f.answer.ai</a> for converting HTML tags to FastHTML functions</li>
+<li><a href="https://fasthtml.gallery/">FastHTML.Gallery</a> for minimal implementations of web components</li>
+<li>Code of several real-life examples, including the <a href="https://github.com/AnswerDotAI/home-fasthtml">FastHTML landing page</a>, the <a href="https://github.com/AnswerDotAI/fh-about">About FastHTML website</a>, (which uses <a href="https://github.com/AnswerDotAI/fh-bootstrap">fh-bootstrap</a>), and this very <a href="https://github.com/Xceron/florianbrand.de">site</a>!</li>
+</ul>
+</li>
+<li>Community support<ul>
+<li>The #fasthtml channel on the <a href="https://discord.gg/qcXvcxMhdP">FastAI Discord</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="deployment">Deployment</h2>
+<p>I've deployed the site on a VPS from netcup. For just â‚¬3.99 per month, I get 2 vCores, 2GB RAM, and a 64GB SSD (<a href="https://www.netcup.eu/bestellen/produkt.php?produkt=3899">link</a>). 
+This is a fantastic deal, especially when compared to cloud providers like AWS. 
+These services often charge 3-5 times more for similar resources and can be more complex to set up. Platform-as-a-Service (PaaS) options like Railway, Heroku, and Vercel are easier-to-use alternatives, but they can become costly if your site experiences high traffic.
+Personally, I find easier to manage and use a VPS, which I can ssh into to set up my things, such as this blog, compared to a service which tries to abstract this away from me. </p>
+<p>FastHTML offers various <a href="https://docs.fastht.ml/tutorials/deployment.html">templates</a> to deploy the site for popular providers. As there is no guide for a generic, self-hosted setup, so here is my setup:</p>
+<ul>
+<li>A (public) git repository with the code of the server, which is available <a href="https://github.com/Xceron/florianbrand.de">here</a>. As the site only consists of (Fast)HTML, CSS and markdown files with a very basic routing scheme, it is okay to have the code public. The default should be a private repository. </li>
+<li>Docker with docker compose to build and run FastHTML and the associated server, which can be accessed <a href="https://github.com/Xceron/florianbrand.de/blob/main/Dockerfile">here</a><sup id="fnref:docker"><a class="footnote-ref" href="#fn:docker">4</a></sup>. While it is not necessary to use Docker, it makes the setup easier and more reproducible between the local development machine and the VPS.</li>
+<li><a href="https://caddyserver.com/">Caddy</a>, which is an alternative to nginx and acts as a reverse proxy and web server. It is easier to set up and configure than nginx, as it has automatic HTTPS and a simple configuration file.</li>
+</ul>
+<p>The process to deploy the site is as follows:</p>
+<ol>
+<li>ssh into the VPS server</li>
+<li>Install Docker and Docker Compose</li>
+<li>Clone the repository of the site</li>
+<li>Create a file named <code>Caddyfile</code> with the configuration for the site</li>
+<li>Create a file named <code>docker-compose.yml</code> with the configuration for the FastHTML server and the Caddy server</li>
+<li>Run <code>docker-compose up --build -d</code> to build and run the FastHTML server and the Caddy server</li>
+</ol>
+<p>The <code>Caddyfile</code> for an exemplary page at <code>yourpage.com</code> would look like this:</p>
+<pre class="codehilite"><code class="language-Caddy">YOURPAGE.com, www.YOURPAGE.com {
+    reverse_proxy fasthtml-app:5001
+}
+</code></pre>
+
+<p>The <code>docker-compose.yml</code> file would look like this:</p>
+<pre class="codehilite"><code class="language-yaml">services:
+  caddy:
+    image: caddy:latest
+    ports:
+      - &quot;80:80&quot;
+      - &quot;443:443&quot;
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+
+  fasthtml-app:
+    build:
+      context: ./&lt;PATH TO THE LOCAL REPOSITORY&gt;
+      dockerfile: Dockerfile
+    container_name: fasthtml-app
+</code></pre>
+
+<p>This is everything needed for the deployment. The site should be available at <code>yourpage.com</code> and <code>www.yourpage.com</code> with automatic HTTPS being set up by Caddy.</p>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>For me, FastHTML has filled a desire I had for a long time: A simple way to create websites, without requiring me to learn the complexity which is modern web development.
+I never thought I'd be using Python like PHP, but it is a welcome change and being able to tap into the vast ecosystem of Python libraries is a huge plus.
+For now, I don't think FastHTML will replace (my usage of) gradio and streamlit, which make it easy to create good-looking MVPs in a mere minutes with few lines of code.
+This could change, however, if the community grows and makes components easily available, which would make it easier to create more complex sites with less code.
+In the community discord, there are people from different backgrounds: Data scientists, which want to create beautiful dashboards, web developers, which want to have a simpler way to create websites,  Django powerusers, which know everything about Python web development and server, and many more.
+I will watch the development of FastHTML closely and can't wait to see where the framework will be in a year or two.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:pycharm">
+<p>Alternatively, you can use VSCode/Cursor or run it in your terminal, which all work perfectly fine with live reloading, also on Windows.&#160;<a class="footnote-backref" href="#fnref:pycharm" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:imports">
+<p>There is an <a href="https://github.com/AnswerDotAI/fasthtml/blob/main/examples/pep8_app.py">example</a> of a PEP8 conform app.py with <code>from fasthtml import common as fh</code>, which then results in a lot of <code>fh.</code> in the code, making it less readable. Alternatively, you could also import every used HTML tag, but this results in ~20 lines of imports rather quickly.&#160;<a class="footnote-backref" href="#fnref:imports" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:usage">
+<p>Screenshot done with the amazing <a href="https://github.com/jesseduffield/lazydocker">lazydocker</a> tool&#160;<a class="footnote-backref" href="#fnref:usage" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:docker">
+<p>The Dockerfile uses <a href="https://github.com/astral-sh/uv">uv</a> to install the python dependencies instead of pip. uv is much faster than pip, but is not part of the Docker images, so it has to be installed first.&#160;<a class="footnote-backref" href="#fnref:docker" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>]]></content>
+    <link href="https://florianbrand.de/posts/fasthtml-intro"/>
+    <summary>Buiding a personal site with FastHTML</summary>
+    <category term="web"/>
+    <category term="fasthtml"/>
+    <contributor>
+      <name>Florian Brand</name>
+      <email>privat@florianbrand.de</email>
+    </contributor>
+    <published>2024-08-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://florianbrand.de/posts/uv-intro</id>
+    <title>Sane Python dependency management with uv</title>
+    <updated>2024-10-30T19:29:20.970534+00:00</updated>
+    <author>
+      <name>Florian Brand</name>
+      <email>privat@florianbrand.de</email>
+    </author>
+    <content type="CDATA"><![CDATA[<h1 id="sane-python-dependency-management-with-uv">Sane Python dependency management with uv</h1>
+<p>Astral, the company behind the fast and beloved python linter <a href="https://astral.sh/ruff">ruff</a> has been working on <a href="https://github.com/astral-sh/uv">uv</a> for some time now, with the ambitious goal to bring the philosophy of cargo, rusts package manager, to the python ecosystem.
+Personally, I have never been a fan of alternative package managers and tools like conda, poetry, pipx and others, as they require you to install a whole tool for a certain use case, addressing only a single pain point.
+However, uv is different, and I've been using it for some months now as a replacement for pip.
+uv offers a very noticeable speedup for installing packages, even on small projects, while using the same commands as pip.
+Some projects are already switching their pipelines and report big speedups, e.g. streamlit reducing their load time up to <a href="https://blog.streamlit.io/python-pip-vs-astral-uv/">55%</a> or Google having a <a href="https://x.com/cgarciae88/status/1826589523020595546">2-5x speedup</a> on their CI/CD pipelines for a JAX library.</p>
+<p>With <a href="https://astral.sh/blog/uv-unified-python-packaging">uv 0.3.0</a>, Astral is targeting more than just pip and want to provide a unified interface for all python packaging needs, from CLI tools to complicated projects spanning multiple packages. 
+This post is meant as a small introduction into <code>uv</code> to showcase some of the features, everything else can be found in the <a href="https://docs.astral.sh/uv/">documentation</a>.</p>
+<h2 id="installation">Installation</h2>
+<p>Installing uv is pretty easy:</p>
+<pre class="codehilite"><code class="language-bash">curl -LsSf https://astral.sh/uv/install.sh | sh
+</code></pre>
+
+<p>On Windows, it can be installed with PowerShell as follows:</p>
+<pre class="codehilite"><code class="language-powershell">powershell -c &quot;irm https://astral.sh/uv/install.ps1 | iex&quot;
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+<h3 id="pip-commands">pip commands</h3>
+<p>The easiest way to get started with uv is to use the <a href="https://docs.astral.sh/uv/pip/">pip interface</a>.
+To do this, simply replace any <code>pip</code> command with <code>uv pip</code>, e.g. <code>uv pip install requests</code> instead of <code>pip install requests</code> or <code>uv pip freeze</code> instead of <code>pip freeze</code>.
+This way, you gain the speedup of uv without having to learn any new commands or other tools.
+You can also use uv with <a href="https://docs.astral.sh/uv/pip/environments/#discovery-of-python-environments">existing venvs/projects</a>, making the switch to uv very easy. </p>
+<h3 id="uv-commands">uv commands</h3>
+<p>Aside from the pip interface, uv also offers its own commands, which are more powerful and can be used to manage your python projects.
+For projects, the following commands are of importance when working with python projects:</p>
+<table>
+<thead>
+<tr>
+<th>uv command</th>
+<th>pip command(s)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uv init &lt;name&gt;</code></td>
+<td>N/A</td>
+<td>creates a new, empty project according to the <code>pyproject.toml</code> specification</td>
+</tr>
+<tr>
+<td><code>uv venv</code></td>
+<td><code>python -m venv .venv</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>uv add &lt;package&gt;</code></td>
+<td><code>pip install &lt;package&gt;</code></td>
+<td>uv also adds it to the pyproject.toml, similar to <code>poetry add &lt;package&gt;</code>, which pip does not</td>
+</tr>
+<tr>
+<td><code>uv remove &lt;package&gt;</code></td>
+<td><code>pip uninstall &lt;package&gt; &amp;&amp; pip freeze &gt; requirements.txt</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>uv sync</code></td>
+<td><code>pip freeze \| xargs pip uninstall -y &amp;&amp; pip install -r requirements.txt</code></td>
+<td>uv also creates a venv if it doesn't exist</td>
+</tr>
+<tr>
+<td><code>uv run &lt;python_file&gt;</code></td>
+<td><code>source .venv/activate &amp;&amp; python &lt;python_file&gt;</code></td>
+<td>uv can also work with inline dependencies, removing the need for a venv directory (<a href="https://docs.astral.sh/uv/reference/cli/#uv-run">Docs</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>The best thing about uv: it tries to fix errors itself instead of throwing them back to you.
+As an example, if you just have a <code>pyproject.toml</code> with a python version you have not installed, uv will install if for you[^envs], then create a venv and install the dependencies.</p>
+<h2 id="the-uv-ecosystem">The uv ecosystem</h2>
+<p>As mentioned in the introduction, uv tries to capture the whole ecosystem, not (just) the management of python projects like poetry.</p>
+<p>uv categorizes between <a href="https://docs.astral.sh/uv/concepts/tools/">tools</a>, <a href="https://docs.astral.sh/uv/guides/scripts/">scripts</a>, <a href="https://docs.astral.sh/uv/concepts/projects/">projects</a> and <a href="https://docs.astral.sh/uv/concepts/workspaces/">workspaces</a>:</p>
+<p><img alt="" src="img/uv-overview.svg" /></p>
+<h3 id="tools">Tools</h3>
+<p>In uv, tools are meant for CLI tools, such as ruff or <a href="https://github.com/simonw/llm">llm</a>. 
+If you run <code>uvx &lt;tool&gt;</code>, uv will automatically install the tool if you don't have it installed yet; else it will run the tool.
+uv will create an isolated environment for the tool.
+Changes to the tool are preserved - if you store your API key(s) for the <code>llm</code> tool, running <code>uvx llm</code> another time will still have the API key(s) stored.
+The tool command is meant as a replacement for <a href="https://github.com/pypa/pipx">pipx</a>.</p>
+<h3 id="scripts">Scripts</h3>
+<p>In uv, scripts mean single python files without a <code>pyproject.toml</code> or other project files.
+You can use dependencies either with <code>uv run --with &lt;dependencies&gt; &lt;script&gt;</code>, e.g. <code>uv run --with requests script.py</code>, or by including a special comment at the start of the file:
+<img alt="uv-script-run.png" src="img/uv-script-run.png" /></p>
+<p>In this example, the first lines indicate the python version and the dependencies needed to run the script. 
+Just like other commands, uv will automatically detect if you miss the python version or dependencies and install them for you.
+I expect this syntax, which is a new <a href="https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata">standard</a>, to be more widespread in the near feature, as it does not clutter your global python installation nor require the explicit setup of a venv just for a single script.</p>
+<h3 id="projects-and-workspaces">Projects and Workspaces</h3>
+<p>For projects, uv uses and expects a <code>pyproject.toml</code> file.
+When you install dependencies, uv will create a <code>uv.lock</code> file, which is the only file  not adhering to a python standard.
+It contains the exact versions of all the dependencies and is a cross-platform lock file, which should not be edited by hand.</p>
+<p>Workspaces are meant for more complex projects, which span multiple packages.
+The documentation for workspaces can be found <a href="https://docs.astral.sh/uv/concepts/workspaces/">here</a>.</p>
+<h2 id="docker">Docker</h2>
+<p>The easiest way to use uv in Docker images is to copy the official Docker image:</p>
+<pre class="codehilite"><code class="language-Dockerfile">FROM python:3.12-slim-bookworm
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+</code></pre>
+
+<p>Then, you can copy the content of your python project and run <code>uv sync</code>.
+As an example, this is the <a href="https://github.com/Xceron/florianbrand.de/blob/main/Dockerfile">current Dockerfile</a> for this website:</p>
+<pre class="codehilite"><code class="language-Dockerfile">FROM python:3.12-slim
+COPY --from=ghcr.io/astral-sh/uv:0.3.1 /uv /bin/uv
+
+ADD . /app
+WORKDIR /app
+
+RUN uv sync
+
+CMD [&quot;uv&quot;, &quot;run&quot;, &quot;main.py&quot;]
+</code></pre>
+
+<h2 id="conclusion">Conclusion</h2>
+<p><img alt="uv-horse.jpg" src="img/uv-horse.jpg" /></p>
+<p>The team behind astral made a genius move by luring in users with a familiar pattern to replace pip and get speedups, just to offer them a whole suite to replace all needs a python user might have.
+I think it's a great tool and, similar to ruff, will see widespread adoption in a short time by the python community.</p>]]></content>
+    <link href="https://florianbrand.de/posts/uv-intro"/>
+    <summary>An overview of uv, the fast package manager</summary>
+    <category term="tools"/>
+    <category term="til"/>
+    <contributor>
+      <name>Florian Brand</name>
+      <email>privat@florianbrand.de</email>
+    </contributor>
+    <published>2024-08-23T00:00:00+00:00</published>
+  </entry>
+</feed>
