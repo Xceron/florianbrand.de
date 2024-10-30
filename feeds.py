@@ -110,8 +110,8 @@ def build_feed(category: str | None = None):
     fg = FeedGenerator()
 
     # Basic feed settings - modify with your details
-    fg.id("https://florianbrand.de")
-    fg.title("Florian Brand - Blog")
+    fg.id("https://florianbrand.de/")
+    fg.title("Florian Brand")
     fg.author(
         {
             "name": "Florian Brand",

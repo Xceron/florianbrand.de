@@ -1,0 +1,51 @@
+name: Generate RSS Feeds
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'posts/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      feed_updated: ${{ steps.commit.outputs.committed }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install feedgen python-frontmatter markdown python-dateutil pytz
+
+      - name: Generate feeds
+        run: python main.py
+
+      - name: Commit and push if changed
+        id: commit
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add feeds/
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "committed=false" >> $GITHUB_OUTPUT
+          else
+            git commit -m "Update RSS feeds [skip ci]"
+            git push
+            echo "committed=true" >> $GITHUB_OUTPUT
+          fi
+
+  trigger-docker-build:
+    needs: build
+    if: needs.build.outputs.feed_updated == 'true'
+    uses: ./.github/workflows/docker-build-push.yml@main

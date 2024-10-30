@@ -4,6 +4,7 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
+  workflow_call:  # Add this line to allow it to be called by other workflows
 
 env:
   REGISTRY: ghcr.io
