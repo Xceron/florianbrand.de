@@ -51,9 +51,7 @@ def filter_posts_by_category(posts: list[dict], category: str):
 
 def github_markdown_to_html(markdown_str):
     """Convert GitHub-flavored Markdown string to HTML."""
-    html = markdown.markdown(
-        markdown_str, extensions=["extra", "codehilite", "toc", "tables"]
-    )
+    html = markdown.markdown(markdown_str, extensions=["extra", "codehilite", "toc", "tables"])
     return html
 
 
@@ -122,7 +120,7 @@ def build_feed(category: str | None = None):
         }
     )
     fg.link(href="https://florianbrand.de", rel="alternate")
-    fg.subtitle("Florian Brand - Blog")
+    fg.subtitle("Florian Brand")
     fg.language("en")
     fg.rights(f"All rights reserved {datetime.now().year}, Florian Brand")
 

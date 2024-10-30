@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://florianbrand.de</id>
   <title>Florian Brand - Blog</title>
-  <updated>2024-10-30T19:29:20.969533+00:00</updated>
+  <updated>2024-10-30T19:34:46.382591+00:00</updated>
   <author>
     <name>Florian Brand</name>
     <email>privat@florianbrand.de</email>
@@ -15,7 +15,7 @@
   <entry>
     <id>https://florianbrand.de/posts/fasthtml-intro</id>
     <title>How FastHTML sparked my joy in web development</title>
-    <updated>2024-10-30T19:29:21.003561+00:00</updated>
+    <updated>2024-10-30T19:34:46.416667+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -207,7 +207,7 @@ I will watch the development of FastHTML closely and can't wait to see where the
   <entry>
     <id>https://florianbrand.de/posts/uv-intro</id>
     <title>Sane Python dependency management with uv</title>
-    <updated>2024-10-30T19:29:20.970534+00:00</updated>
+    <updated>2024-10-30T19:34:46.383601+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
