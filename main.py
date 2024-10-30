@@ -1,6 +1,5 @@
 import pathlib
 from fasthtml.common import *
-from fasthtml.core import FtResponse
 from fasthtml.js import HighlightJS
 from fh_bootstrap import bst_hdrs, Container, Image, Icon, ContainerT
 import frontmatter
@@ -17,34 +16,20 @@ headers = (
     ),
     StyleX("assets/styles.css"),
     Script(src="https://unpkg.com/htmx.org@next/dist/htmx.min.js"),
-    *HighlightJS(
-        langs=["python", "html", "yaml", "bash", "sh", "powershell", "dockerfile"],
-        dark="a11y-dark",
-    ),
+    *HighlightJS(langs=["python", "html", "yaml", "bash", "sh", "powershell", "dockerfile"], dark="a11y-dark"),
     Favicon("/assets/favicon.ico", "/assets/favicon.ico"),
-    Meta(
-        name="viewport",
-        content="width=device-width, initial-scale=1, viewport-fit=cover",
-    ),
+    Meta(name="viewport", content="width=device-width, initial-scale=1, viewport-fit=cover"),
     Meta(charset="utf-8"),
 )
 
 
 async def not_found(request, exc):
-    return FtResponse(
-        status_code=404,
-        content=get_base((H2("404 - Not Found"), P("Return to ", A("home", href="/")))),
-    )
+    return get_base((H2("404 - Not Found"), P("Return to ", A("home", href="/"))))
 
 
 exception_handlers = {404: not_found}
 
-app = FastHTML(
-    hdrs=bst_hdrs + headers,
-    live=False,
-    default_hdrs=False,
-    exception_handlers=exception_handlers,
-)
+app = FastHTML(hdrs=bst_hdrs + headers, live=False, default_hdrs=False, exception_handlers=exception_handlers)
 app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 app.mount("/posts/img", StaticFiles(directory="posts/img"), name="posts_img")
 
@@ -72,31 +57,17 @@ def get_base(content):
                     H1("Florian Brand"),
                     P("Trier University | DFKI"),
                     Div(
-                        Icon(
-                            "fab fa-x-twitter fa-sm",
-                            href="https://www.twitter.com/xceron_",
-                            button=False,
-                        ),
-                        Icon(
-                            "fab fa-github fa-sm",
-                            href="https://www.github.com/xceron",
-                            button=False,
-                        ),
+                        Icon("fab fa-x-twitter fa-sm", href="https://www.twitter.com/xceron_", button=False),
+                        Icon("fab fa-github fa-sm", href="https://www.github.com/xceron", button=False),
                         Icon(
                             "fab fa-linkedin fa-sm",
                             href="https://www.linkedin.com/in/florian-brand-b046b622b/",
                             button=False,
                         ),
                         Icon(
-                            "fab fa-discord fa-sm",
-                            href="https://discord.com/users/1233745701243195433",
-                            button=False,
+                            "fab fa-discord fa-sm", href="https://discord.com/users/1233745701243195433", button=False
                         ),
-                        Icon(
-                            "fas fa-at fa-sm",
-                            href="mailto:hello@florianbrand.de",
-                            button=False,
-                        ),
+                        Icon("fas fa-at fa-sm", href="mailto:hello@florianbrand.de", button=False),
                         cls="social-icons",
                     ),
                     cls="profile-info",
@@ -116,13 +87,7 @@ def Markdown(s):
     md = (
         MarkdownIt("commonmark")
         .enable("table")
-        .use(
-            anchors_plugin,
-            min_level=2,
-            permalink=True,
-            permalinkSymbol="#",
-            permalinkBefore=True,
-        )
+        .use(anchors_plugin, min_level=2, permalink=True, permalinkSymbol="#", permalinkBefore=True)
         .use(footnote_plugin)
         .use(front_matter_plugin)
     )
@@ -157,9 +122,7 @@ def posts():
         with open(f"posts/{file}.md", "r") as post_file:
             content = frontmatter.load(post_file)
             if "draft" in content and not content["draft"]:
-                links.append(
-                    Li(content["date"], " ", A(content["title"], href=f"/posts/{file}"))
-                )
+                links.append(Li(content["date"], " ", A(content["title"], href=f"/posts/{file}")))
     links = sorted(links, key=lambda x: x[0], reverse=True)
     return get_base(
         (
@@ -201,13 +164,7 @@ def papers():
                             ),
                         ),
                         "]",
-                        Span(
-                            "[",
-                            A(
-                                "DBLP",
-                                href="https://dblp.org/rec/conf/iccbr/BrandMB24.html",
-                            ),
-                        ),
+                        Span("[", A("DBLP", href="https://dblp.org/rec/conf/iccbr/BrandMB24.html")),
                         "]",
                     ),
                 ),
@@ -220,17 +177,11 @@ def papers():
                             "[",
                             A(
                                 "PDF",
-                                href="http://www.wi2.uni-trier.de/shared/publications/2023_Brand_RLForAdaptiveWorkflows.pdf",
+                                href="https://www.wi2.uni-trier.de/shared/publications/2023_Brand_RLForAdaptiveWorkflows.pdf",
                             ),
                         ),
                         "]",
-                        Span(
-                            "[",
-                            A(
-                                "DBLP",
-                                href="https://dblp.org/rec/conf/iccbr/BrandLM0B23.html",
-                            ),
-                        ),
+                        Span("[", A("DBLP", href="https://dblp.org/rec/conf/iccbr/BrandLM0B23.html")),
                         "]",
                     ),
                     Li(
@@ -240,17 +191,11 @@ def papers():
                             "[",
                             A(
                                 "PDF",
-                                href="http://www.wi2.uni-trier.de/shared/publications/2023_EDOC_MalburgEtAl_AdaptiveWorkflows_by_CBR_and_Planning.pdf",
+                                href="https://www.wi2.uni-trier.de/shared/publications/2023_EDOC_MalburgEtAl_AdaptiveWorkflows_by_CBR_and_Planning.pdf",
                             ),
                         ),
                         "]",
-                        Span(
-                            "[",
-                            A(
-                                "DBLP",
-                                href="https://dblp.org/rec/conf/edoc/MalburgBB22",
-                            ),
-                        ),
+                        Span("[", A("DBLP", href="https://dblp.org/rec/conf/edoc/MalburgBB22")),
                         "]",
                     ),
                 ),
