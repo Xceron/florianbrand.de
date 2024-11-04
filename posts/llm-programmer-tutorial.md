@@ -77,7 +77,7 @@ Finally, write the code using clean, pythonic code by leveraging the language's 
 This is known as _(zero-shot) chain-of-thought prompting_, with the most "implementations" using "Let's think step by step." instead of the prompt above. Here is an excerpt of Claude's system prompt (emphasis mine):
 
 ```
-When presented with a math problem, logic problem, or other problem benefiting from systematic thinking, Claude **thinks through it step by step** before giving its final answer.
+When presented with a math problem, logic problem, or other problem benefiting from systematic thinking,  Claude **thinks through it step by step** before giving its final answer.
 ```
 
 This yields better results compared to just asking for a solution. If you can be more specific about the problems and specific steps to solve the problem, this improves the quality of the solution even more. In general, you want _longer_ outputs from the model for most coding problems. Problems which require not a lot of "thinking" can be solved without such long prompts. Examples for such problems are the formatting of code, adding type hints or porting from well-known APIs to another one (e.g. from `requests` to `urllib` to get rid of external dependencies).
@@ -86,14 +86,16 @@ You also want to remove any ambiguity in the prompt, as the LLM then needs to ma
 For example, this prompt is ambiguous:
 
 ```
-Generate a GUI with a colored background and a big button in the center. It should be green.
+Generate a GUI with a colored background and a big button in the center. 
+It should be green.
 ```
 
 In this prompt, the _coreference_ "it" is ambiguous, as it could refer to either the background or the button.
 A better prompt would be to resolve this reference, removing the ambiguity and making the prompt clearer:
 
 ```
-Generate a GUI with a colored background and a big button in the center. The button should be green.
+Generate a GUI with a colored background and a big button in the center. 
+The button should be green.
 ```
 
 
@@ -120,7 +122,8 @@ Here are the docs for the Lazy API:
 <docs>
 # Usage
 
-With the lazy API, Polars doesn't run each query line-by-line but instead processes the full query end-to-end. To get the most out of Polars it is important that you use the lazy API because:
+With the lazy API, Polars doesn't run each query line-by-line but instead processes the full query end-to-end. 
+To get the most out of Polars it is important that you use the lazy API because:
 
 - the lazy API allows Polars to apply automatic query optimization with the query optimizer
 - the lazy API allows you to work with larger than memory datasets using streaming
