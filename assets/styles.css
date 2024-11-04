@@ -89,8 +89,12 @@ body {
 
 h2 {
     font-size: 24px;
-    color: #ffffff;
     margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
 }
 
 p {
