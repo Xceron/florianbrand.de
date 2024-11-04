@@ -125,7 +125,7 @@ def posts():
     blog_files = [file.stem for file in blog_dir.glob("*.md")]
     links = []
     for file in blog_files:
-        with open(f"posts/{file}.md", "r") as post_file:
+        with open(f"posts/{file}.md", "r", encoding="utf-8") as post_file:
             content = frontmatter.load(post_file)
             if "draft" in content and not content["draft"]:
                 links.append(Li(content["date"], " ", A(content["title"], href=f"/posts/{file}")))
