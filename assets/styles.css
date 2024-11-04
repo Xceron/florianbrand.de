@@ -130,3 +130,20 @@ th, td {
     padding: 8px;
     text-align: left;
 }
+
+/* Mobile styles */
+@media screen and (max-width: 640px) {
+    .content {
+        border-radius: 0;
+        padding: 15px 10px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .container-sm {
+        max-width: 100% !important;
+        padding: 0;
+    }
+}
