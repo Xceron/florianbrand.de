@@ -8,7 +8,9 @@ from mdit_py_plugins.front_matter import front_matter_plugin
 from mdit_py_plugins.footnote import footnote_plugin
 from mdit_py_plugins.anchors import anchors_plugin
 
+fa_cfurl = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0'
 headers = (
+    Link(href=f"{fa_cfurl}/css/all.min.css", rel="stylesheet"),
     Link(
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
         rel="stylesheet",
@@ -59,6 +61,7 @@ def get_base(content):
                     Div(
                         Icon("fas fa-rss fa-sm", href="/feeds/atom.xml", button=False),
                         Icon("fab fa-x-twitter fa-sm", href="https://www.twitter.com/xceron_", button=False),
+                        Icon("fab fa-bluesky fa-sm", href="https://www.bsky.app/profile/florianbrand.de", button=False),
                         Icon("fab fa-github fa-sm", href="https://www.github.com/xceron", button=False),
                         Icon(
                             "fab fa-linkedin fa-sm",
