@@ -60,7 +60,6 @@ def get_base(content):
                     P("Trier University | DFKI"),
                     Div(
                         Icon("fas fa-rss fa-sm", href="/feeds/atom.xml", button=False),
-                        Icon("fab fa-x-twitter fa-sm", href="https://www.twitter.com/xceron_", button=False),
                         Icon("fab fa-bluesky fa-sm", href="https://www.bsky.app/profile/florianbrand.de", button=False),
                         Icon("fab fa-github fa-sm", href="https://www.github.com/xceron", button=False),
                         Icon(
