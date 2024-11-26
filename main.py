@@ -8,7 +8,7 @@ from mdit_py_plugins.front_matter import front_matter_plugin
 from mdit_py_plugins.footnote import footnote_plugin
 from mdit_py_plugins.anchors import anchors_plugin
 
-fa_cfurl = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0'
+fa_cfurl = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0"
 headers = (
     Link(href=f"{fa_cfurl}/css/all.min.css", rel="stylesheet"),
     Link(
@@ -130,8 +130,14 @@ def posts():
         with open(f"posts/{file}.md", "r", encoding="utf-8") as post_file:
             content = frontmatter.load(post_file)
             if "draft" in content and not content["draft"]:
-                links.append(Li(content["date"], " ", A(content["title"], href=f"/posts/{file}")))
-    links = sorted(links, key=lambda x: x[0], reverse=True)
+                links.append(
+                    Li(
+                        Span(content["date"], cls="post-date"),
+                        Span(A(content["title"], href=f"/posts/{file}"), cls="post-link"),
+                        cls="post-list-item",
+                    )
+                )
+    links = sorted(links, key=lambda x: x[0][0], reverse=True)
     return get_base(
         (
             *Socials(
@@ -141,7 +147,7 @@ def posts():
                 twitter_site="@xceron_",
                 image="",
             ),
-            Div(H2("Posts"), Ul(*links)),
+            Div(H2("Posts"), Ul(*links, cls="post-list")),
         )
     )
 
