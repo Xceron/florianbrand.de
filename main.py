@@ -60,17 +60,14 @@ def get_base(content):
                     P("Trier University | DFKI"),
                     Div(
                         Icon("fas fa-rss fa-sm", href="/feeds/atom.xml", button=False),
-                        Icon("fab fa-bluesky fa-sm", href="https://www.bsky.app/profile/florianbrand.de", button=False),
+                        Icon("fab fa-bluesky fa-sm", href="https://bsky.app/profile/florianbrand.de", button=False),
                         Icon("fab fa-github fa-sm", href="https://www.github.com/xceron", button=False),
                         Icon(
                             "fab fa-linkedin fa-sm",
                             href="https://www.linkedin.com/in/florian-brand-b046b622b/",
                             button=False,
                         ),
-                        Icon(
-                            "fab fa-discord fa-sm", href="https://discord.com/users/1233745701243195433", button=False
-                        ),
-                        Icon("fas fa-at fa-sm", href="mailto:hello@florianbrand.de", button=False),
+                        Icon("fas fa-at fa-sm", href="mailto:privat@florianbrand.de", button=False),
                         cls="social-icons",
                     ),
                     cls="profile-info",
