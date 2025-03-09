@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://florianbrand.de/</id>
   <title>Florian Brand</title>
-  <updated>2025-03-09T21:14:16.473018+00:00</updated>
+  <updated>2025-03-09T21:30:23.542936+00:00</updated>
   <author>
     <name>Florian Brand</name>
     <email>privat@florianbrand.de</email>
@@ -15,7 +15,7 @@
   <entry>
     <id>https://florianbrand.de/posts/fasthtml-intro</id>
     <title>How FastHTML sparked my joy in web development</title>
-    <updated>2025-03-09T21:14:16.518711+00:00</updated>
+    <updated>2025-03-09T21:30:23.591757+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -207,7 +207,7 @@ I will watch the development of FastHTML closely and can't wait to see where the
   <entry>
     <id>https://florianbrand.de/posts/uv-intro</id>
     <title>Sane Python dependency management with uv</title>
-    <updated>2025-03-09T21:14:16.511560+00:00</updated>
+    <updated>2025-03-09T21:30:23.584819+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -340,7 +340,7 @@ I think it's a great tool and, similar to ruff, will see widespread adoption in 
   <entry>
     <id>https://florianbrand.de/posts/llm-programmer-tutorial</id>
     <title>A Guide to LLMs for Programmers</title>
-    <updated>2025-03-09T21:14:16.473872+00:00</updated>
+    <updated>2025-03-09T21:30:23.571404+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -508,5 +508,51 @@ Since the release of 3.5 Sonnet, I found myself writing a lot of simple scripts 
       <email>privat@florianbrand.de</email>
     </contributor>
     <published>2024-11-04T00:00:00+00:00</published>
+  </entry>
+  <entry>
+    <id>https://florianbrand.de/posts/odr</id>
+    <title>Using OpenAI's Deep Research to save Time and Money</title>
+    <updated>2025-03-09T21:30:23.543965+00:00</updated>
+    <author>
+      <name>Florian Brand</name>
+      <email>privat@florianbrand.de</email>
+    </author>
+    <content type="CDATA"><![CDATA[<h1 id="using-openais-deep-research-to-save-time-and-money">Using OpenAI's Deep Research to save Time and Money</h1>
+<p><a href="https://openai.com/index/introducing-deep-research/">OpenAI's Deep Research</a> (ODR), which was released a bit over a month ago, has become a valuable tool for me.
+Initially, I wanted to compare it against the countless competitors, but none of them<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> come close to the quality of OpenAI's offering; most of them are either shallow listicle-fests or contain countless mistakes.</p>
+<h2 id="the-versatility-of-odr">The versatility of ODR</h2>
+<p>My most common use case is to use it as a research assistant to get into a new topic quickly.
+This is the most obvious and most advertised use case for Deep Research, which will <a href="https://www.interconnects.ai/p/deep-research-information-vs-insight-in-science">only increase in quality and usage over time</a>.</p>
+<p>At least right now, the outputs cannot replace a full literature review, but they are good enough to get a good intro into a new topic, spanning around 3–6 papers usually, which saves around a day of finding and reading relevant papers.
+Aside from the summaries of those papers, ODR can also compare the approaches and findings and transfer them onto other domains.</p>
+<p>Apart from that, ODR is also good for finding fixes for obscure bugs and niche libraries when tasked to scout GitHub issues and obscure StackOverflow posts for the solution. The underlying model behind ODR is trained to generate reports, so it will not fix the code for you, but instead give you a detailed rundown of the possible solutions.</p>
+<p>A totally different use case, which I've not seen mentioned elsewhere, is using it as a shopping assistant for extremely niche products. As an example, I needed a heavy-duty rack which very specific and non-standard measurements to fit in a recess of my apartment. I have to admit, I was unable to find anything myself with some hours of searching, whereas ODR was able to find the single option satisfying the given constraints.</p>
+<p>ODR is also capable of finding the cheapest option for a given product, which not even Idealo, the biggest price comparison website in Germany, could do. It is also capable of finding valid replacement parts for a given product when supplied with the product's name, something I expected competitors (like Perplexity) to accomplish, but they could not.</p>
+<h2 id="getting-the-most-out-of-odr">Getting the most out of ODR</h2>
+<p>That said, ODR is not perfect and not as straightforward to use as other, LLM-based tools, despite the seeming simplicity of clicking the "Deep Research" button in ChatGPT and then typing in your prompt and answering the follow-up questions. One thing which isn't obvious: The model chosen when clicking the button doesn't matter, Deep Research will always use o3 behind the scenes, even when the selected model is 4o-mini.</p>
+<p>The most important aspect of using ODR is that <strong>prompting matters (again)</strong>. Whereas other products and LLMs these days are good enough for the majority of prompts, the difference in the outputs of ODR is night and day depending on the prompt.</p>
+<p>Good prompts are highly specific and detailed, describing the goal, possible constraints and the desired output format. A viable approach is to use LLMs to generate a prompt for ODR, I've been using <a href="https://www.florianbrand.de/posts/odr-prompt">this prompt template</a> from <a href="https://x.com/buccocapital/status/1890745551995424987">this tweet</a> with o1-pro to generate a prompt for ODR. In my tests, using this template compared to prompting directly resulted in &gt;40% longer reports, which go into more detail and are more structured.</p>
+<p>Good prompts also specify the (sub)set of websites to use for the research. The default set of websites ODR chooses is a bit better than the usual, SEO-sloptimized first page of Google results, but this is far from perfect. </p>
+<p>As examples: Adding to the prompt that the research should only use ArXiv (and similar sites) leads to better results for literature reviews; asking it to only use primary sources from NVIDIA leads to a correct comparison of GPU specs; asking it to use only Chinese-language sites like Weixin gives you better insights into the Chinese community than any third-party English-language site could give. </p>
+<h3 id="limitations">Limitations</h3>
+<p>When using ODR for comparisons, e.g. to compare different papers or models, I found that the limit seems to be 2-3 comparisons max, i.e., comparing two models (like Qwen against GPT-4o) is fine, but adding more models to the comparison leads to numerous mistakes. I found this to be also true for other tasks: When you prompt it for too many things at once, the output will degrade quickly.</p>
+<p>Aside from that, ODR has some technical limitations. It cannot access gated content, which will <a href="https://stratechery.com/2025/deep-research-and-knowledge-value/">become an increasing part of the internet in the near future</a>. It also cannot access YouTube nor the transcripts of YouTube videos. I also was unable to prompt it to use a transcription service to get the content of videos. It can, however, read PDFs, access images and execute Python code, although I haven't seen that for my queries yet. </p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>And I've tried quite a few, including some open-source projects, <a href="https://gemini.google/overview/deep-research/?hl=en">Gemini Deep Research</a>, <a href="https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research">Perplexity Deep Research</a>, <a href="https://x.ai/blog/grok-3">Grok Deep Search</a>, <a href="https://you.com/ari">You ARI</a>, even the recently released and hyped <a href="https://manus.im/">Manus</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>]]></content>
+    <link href="https://florianbrand.de/posts/odr"/>
+    <summary>An overview and guide on how to use OpenAI's Deep Research (ODR)</summary>
+    <category term="chatgpt"/>
+    <category term="llms"/>
+    <contributor>
+      <name>Florian Brand</name>
+      <email>privat@florianbrand.de</email>
+    </contributor>
+    <published>2025-03-09T00:00:00+00:00</published>
   </entry>
 </feed>
