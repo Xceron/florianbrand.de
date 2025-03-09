@@ -221,8 +221,6 @@ def get_post(post: str):
     if not post_path.exists():
         return RedirectResponse(url="/")
     md_file = frontmatter.load(post_path)
-    if md_file["draft"]:
-        return RedirectResponse(url="/")
     return get_base(
         (
             *Socials(
