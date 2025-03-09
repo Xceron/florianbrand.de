@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://florianbrand.de/</id>
   <title>Florian Brand</title>
-  <updated>2024-11-04T18:12:33.583913+00:00</updated>
+  <updated>2025-03-09T21:14:16.473018+00:00</updated>
   <author>
     <name>Florian Brand</name>
     <email>privat@florianbrand.de</email>
@@ -10,12 +10,12 @@
   </author>
   <link href="https://florianbrand.de" rel="alternate"/>
   <generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator>
-  <rights>All rights reserved 2024, Florian Brand</rights>
+  <rights>All rights reserved 2025, Florian Brand</rights>
   <subtitle>Florian Brand</subtitle>
   <entry>
     <id>https://florianbrand.de/posts/fasthtml-intro</id>
     <title>How FastHTML sparked my joy in web development</title>
-    <updated>2024-11-04T18:12:33.641849+00:00</updated>
+    <updated>2025-03-09T21:14:16.518711+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -207,7 +207,7 @@ I will watch the development of FastHTML closely and can't wait to see where the
   <entry>
     <id>https://florianbrand.de/posts/uv-intro</id>
     <title>Sane Python dependency management with uv</title>
-    <updated>2024-11-04T18:12:33.630951+00:00</updated>
+    <updated>2025-03-09T21:14:16.511560+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -340,7 +340,7 @@ I think it's a great tool and, similar to ruff, will see widespread adoption in 
   <entry>
     <id>https://florianbrand.de/posts/llm-programmer-tutorial</id>
     <title>A Guide to LLMs for Programmers</title>
-    <updated>2024-11-04T18:12:33.584711+00:00</updated>
+    <updated>2025-03-09T21:14:16.473872+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
