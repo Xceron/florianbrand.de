@@ -64,7 +64,7 @@ def get_base(content):
                         Icon("fab fa-github fa-sm", href="https://www.github.com/xceron", button=False),
                         Icon(
                             "fab fa-linkedin fa-sm",
-                            href="https://www.linkedin.com/in/florian-brand-b046b622b/",
+                            href="https://www.linkedin.com/in/florianbrand-de/",
                             button=False,
                         ),
                         Icon("fas fa-at fa-sm", href="mailto:privat@florianbrand.de", button=False),
