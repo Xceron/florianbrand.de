@@ -162,6 +162,21 @@ def papers():
             ),
             H2("Papers"),
             Div(
+                H3("2025"),
+                Ul(Li(
+                    "Case-Based Reasoning Meets Large Language Models: A Research Manifesto For Open Challenges and Research Directions",
+                    Br(),
+                    Span(
+                        "[",
+                        A(
+                            "PDF",
+                            href="https://hal.science/hal-05006761v1/document",
+                        ),
+                    ),
+                    "]",
+                    Span("[", A("HAL", href="https://hal.science/hal-05006761v1")),
+                    "]",
+                )),
                 H3("2024"),
                 Ul(
                     Li(
