@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://florianbrand.de/</id>
   <title>Florian Brand</title>
-  <updated>2025-03-09T21:30:23.542936+00:00</updated>
+  <updated>2025-03-28T05:46:44.353886+00:00</updated>
   <author>
     <name>Florian Brand</name>
     <email>privat@florianbrand.de</email>
@@ -15,7 +15,7 @@
   <entry>
     <id>https://florianbrand.de/posts/fasthtml-intro</id>
     <title>How FastHTML sparked my joy in web development</title>
-    <updated>2025-03-09T21:30:23.591757+00:00</updated>
+    <updated>2025-03-28T05:46:44.402967+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -207,7 +207,7 @@ I will watch the development of FastHTML closely and can't wait to see where the
   <entry>
     <id>https://florianbrand.de/posts/uv-intro</id>
     <title>Sane Python dependency management with uv</title>
-    <updated>2025-03-09T21:30:23.584819+00:00</updated>
+    <updated>2025-03-28T05:46:44.396110+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -340,7 +340,7 @@ I think it's a great tool and, similar to ruff, will see widespread adoption in 
   <entry>
     <id>https://florianbrand.de/posts/llm-programmer-tutorial</id>
     <title>A Guide to LLMs for Programmers</title>
-    <updated>2025-03-09T21:30:23.571404+00:00</updated>
+    <updated>2025-03-28T05:46:44.382713+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -512,7 +512,7 @@ Since the release of 3.5 Sonnet, I found myself writing a lot of simple scripts 
   <entry>
     <id>https://florianbrand.de/posts/odr</id>
     <title>Using OpenAI's Deep Research to save Time and Money</title>
-    <updated>2025-03-09T21:30:23.543965+00:00</updated>
+    <updated>2025-03-28T05:46:44.354885+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
