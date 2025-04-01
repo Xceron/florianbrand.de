@@ -160,6 +160,7 @@ dependencies = [
     { name = "python-fasthtml" },
     { name = "python-frontmatter" },
     { name = "pytz" },
+    { name = "pyyaml" },
 ]
 
 [package.metadata]
@@ -171,6 +172,7 @@ requires-dist = [
     { name = "python-fasthtml", specifier = ">=0.10.0" },
     { name = "python-frontmatter", specifier = ">=1.1.0" },
     { name = "pytz", specifier = ">=2024.2" },
+    { name = "pyyaml", specifier = ">=6.0.2" },
 ]
 
 [[package]]

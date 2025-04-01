@@ -1,0 +1,71 @@
+- year: 2025
+  title: "Case-Based Reasoning Meets Large Language Models: A Research Manifesto For Open Challenges and Research Directions"
+  pdf_url: "https://hal.science/hal-05006761v1/document"
+  citation_key: "BrandMB25"
+  bibtex: |
+    @unpublished{bachCaseBasedReasoningMeets2025,
+      title        = {{Case-Based Reasoning Meets Large Language Models: A Research Manifesto For Open Challenges and Research Directions}},
+      author       = {Bach, Kerstin and Bergmann, Ralph and Brand, Florian and others},
+      year         = 2025,
+      note         = {working paper or preprint},
+      pdf          = {https://hal.science/hal-05006761v1/file/main.pdf},
+      hal_id       = {hal-05006761},
+      hal_version  = {v1}
+    }
+
+
+- year: 2024
+  title: "Large Language Models as Knowledge Engineers"
+  pdf_url: "https://www.wi2.uni-trier.de/shared/publications/2024_ICCBR-WS_LLMInCBR_BrandEtAl.pdf"
+  citation_key: "BrandMB24"
+  bibtex: |
+    @inproceedings{brandLargeLanguageModels2024,
+      title        = {Large Language Models as Knowledge Engineers},
+      author       = {Florian Brand and Lukas Malburg and Ralph Bergmann},
+      year         = 2024,
+      booktitle    = {Proceedings of the Workshops at the 32nd International Conference on Case-Based Reasoning {(ICCBR-WS} 2024) co-located with the 32nd International Conference on Case-Based Reasoning {(ICCBR} 2024), M{\\'e}rida, Mexico, July 1, 2024},
+      publisher    = {CEUR-WS.org},
+      series       = {{CEUR} Workshop Proceedings},
+      volume       = 3708,
+      pages        = {3--18},
+      timestamp    = {Tue, 25 Jun 2024 16:52:02 +0200},
+      biburl       = {https://dblp.org/rec/conf/iccbr/BrandMB24.bib},
+      bibsource    = {dblp computer science bibliography, https://dblp.org}
+    }
+- year: 2023
+  title: "Using Deep Reinforcement Learning for the Adaptation of Semantic Workflows"
+  pdf_url: "https://www.wi2.uni-trier.de/shared/publications/2023_Brand_RLForAdaptiveWorkflows.pdf"
+  citation_key: "BrandLM0B23"
+  bibtex: |
+    @inproceedings{brandUsingDeepReinforcement2023,
+      title        = {Using Deep Reinforcement Learning for the Adaptation of Semantic Workflows},
+      author       = {Florian Brand and Katharina Lott and Lukas Malburg and Maximilian Hoffmann and Ralph Bergmann},
+      year         = 2023,
+      booktitle    = {Proceedings of the Workshops at the 31st International Conference on Case-Based Reasoning {(ICCBR-WS} 2023) co-located with the 31st International Conference on Case-Based Reasoning {(ICCBR} 2023), Aberdeen, Scotland, UK, July 17, 2023},
+      publisher    = {CEUR-WS.org},
+      series       = {{CEUR} Workshop Proceedings},
+      volume       = 3438,
+      pages        = {55--70},
+      timestamp    = {Tue, 11 Jul 2023 17:14:10 +0200},
+      biburl       = {https://dblp.org/rec/conf/iccbr/BrandLM0B23.bib},
+      bibsource    = {dblp computer science bibliography, https://dblp.org}
+    }
+
+- year: 2023
+  title: "Adaptive Management of Cyber-Physical Workflows by Means of Case-Based Reasoning and Automated Planning"
+  pdf_url: "https://www.wi2.uni-trier.de/shared/publications/2023_EDOC_MalburgEtAl_AdaptiveWorkflows_by_CBR_and_Planning.pdf"
+  citation_key: "MalburgBB22"
+  bibtex: |
+    @inproceedings{malburgAdaptiveManagementCyber-Physical2022,
+      title        = {Adaptive Management of Cyber-Physical Workflows by Means of Case-Based Reasoning and Automated Planning},
+      author       = {Lukas Malburg and Florian Brand and Ralph Bergmann},
+      year         = 2022,
+      booktitle    = {Enterprise Design, Operations, and Computing. {EDOC} 2022 Workshops - IDAMS, SoEA4EE, TEAR, {EDOC} Forum, Demonstrations Track and Doctoral Consortium, Bozen-Bolzano, Italy, October 4-7, 2022, Revised Selected Papers},
+      publisher    = {Springer},
+      series       = {Lecture Notes in Business Information Processing},
+      volume       = 466,
+      pages        = {79--95},
+      timestamp    = {Sat, 11 Mar 2023 00:11:50 +0100},
+      biburl       = {https://dblp.org/rec/conf/edoc/MalburgBB22.bib},
+      bibsource    = {dblp computer science bibliography, https://dblp.org}
+    }
