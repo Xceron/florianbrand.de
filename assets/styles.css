@@ -218,3 +218,41 @@ ul {
       padding-right: 10px;
     }
 }
+
+/* Light mode styles */
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #ffffff;
+        color: #333333;
+    }
+
+    .nav-link,
+    .social-icons a {
+        color: #333333;
+    }
+
+    .nav-link:hover,
+    .social-icons a:hover {
+        color: #000000;
+    }
+
+    .content {
+        background-color: #f9f9f9;
+    }
+
+    a {
+        color: #007bff; /* A standard blue link color for light themes */
+    }
+
+    code {
+        color: #d63384; /* A pinkish color common for code in light themes */
+        background-color: #f1f1f1; /* Slight background for code blocks */
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+    }
+
+    th,
+    td {
+        border: 1px solid #dee2e6; /* Lighter border color for tables */
+    }
+}

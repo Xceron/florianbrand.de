@@ -19,6 +19,24 @@ headers = (
     StyleX("assets/styles.css"),
     Script(src="https://unpkg.com/htmx.org@next/dist/htmx.min.js"),
     *HighlightJS(langs=["python", "html", "yaml", "bash", "sh", "powershell", "dockerfile"], dark="a11y-dark"),
+    Link(href="/assets/a11y-light.css", rel="stylesheet", cls="prism-light-theme"),
+    Style("""
+        /* By default, show dark theme and hide light theme */
+        .prism-light-theme {
+            display: none;
+        }
+        
+        /* In light mode, show light theme and hide dark theme */
+        @media (prefers-color-scheme: light) {
+            .prism-light-theme {
+                display: block;
+            }
+            /* Hide the dark theme CSS that comes from HighlightJS */
+            link[href*="prism-a11y-dark.css"] {
+                display: none;
+            }
+        }
+    """),
     Favicon("/assets/favicon.ico", "/assets/favicon.ico"),
     Meta(name="viewport", content="width=device-width, initial-scale=1, viewport-fit=cover"),
     Meta(charset="utf-8"),
