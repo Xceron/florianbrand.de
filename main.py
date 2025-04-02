@@ -21,7 +21,9 @@ headers = (
     StyleX("assets/styles.css"),
     Script(src="https://unpkg.com/htmx.org@next/dist/htmx.min.js"),
     *HighlightJS(
-        langs=["python", "html", "yaml", "bash", "sh", "powershell", "dockerfile"], light="a11y-light", dark="a11y-dark"
+        langs=["python", "html", "yaml", "bash", "sh", "powershell", "dockerfile", "plaintext"],
+        light="a11y-light",
+        dark="a11y-dark"
     ),
     Favicon("/assets/favicon.ico", "/assets/favicon.ico"),
     Meta(name="viewport", content="width=device-width, initial-scale=1, viewport-fit=cover"),
@@ -224,7 +226,7 @@ def papers():
                         "]",
                     )
                 )
-                citation_div = Div(Pre(Code(bibtex_content)), id=citation_id, style="display: none;")
+                citation_div = Div(Pre(Code(bibtex_content, cls="language-plaintext")), id=citation_id, style="display: none;")
             else:
                 citation_div = ""
 
@@ -236,10 +238,14 @@ def papers():
 function toggleCitation(linkElement, citationDivId) {
     const citationDiv = document.getElementById(citationDivId);
     if (!citationDiv) return;
+    const codeElement = citationDiv.querySelector('code');
 
     if (citationDiv.style.display === 'none' || citationDiv.style.display === '') {
-        citationDiv.style.display = 'block'; // Or 'inline-block' or remove style
+        citationDiv.style.display = 'block';
         linkElement.textContent = 'Hide BibTeX';
+        if (codeElement && typeof hljs !== 'undefined') {
+             hljs.highlightElement(codeElement);
+        }
     } else {
         citationDiv.style.display = 'none';
         linkElement.textContent = 'BibTeX';
@@ -256,7 +262,7 @@ function toggleCitation(linkElement, citationDivId) {
                 image="",
             ),
             Div(*content_items),
-            toggle_script, # Add script to the page content
+            toggle_script,
         )
     )
 
