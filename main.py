@@ -113,62 +113,43 @@ def get_base(content):
 def Markdown(s): # md_file_obj removed as it wasn't strictly necessary for this implementation
     md_it = MarkdownIt("commonmark")
     md_it.enable("table")
-    # anchors_plugin min_level=2 means anchors start from H2.
-    # Combined with heading preprocessing (H1->H2, etc.), this means post H1s become H2s with anchors.
     md_it.use(anchors_plugin, min_level=2, permalink=True, permalinkSymbol="#", permalinkBefore=True)
     md_it.use(footnote_plugin)
     md_it.use(front_matter_plugin)
 
-    # Customize image rendering for better default alt text
     original_image_renderer = md_it.renderer.rules.get('image')
 
-    def custom_image_renderer(tokens, idx, options, env, self):
+    def custom_image_renderer(tokens, idx, options, env):
         token = tokens[idx]
-        alt_text = token.content # This is the Markdown alt text: ![alt_text](...)
-        src = token.attrs[token.attrIndex('src')][1]
+        alt_text = token.content
+        
+        src = token.attrGet('src')
 
-        # If alt text is 'img' or empty, try to generate a better one from filename
+        if not src:
+            return original_image_renderer(tokens, idx, options, env)
+
         if not alt_text.strip() or alt_text.strip().lower() == "img":
             try:
                 filename = pathlib.Path(src).name
-                # Use filename without extension as alt text, replacing hyphens/underscores
                 generated_alt = pathlib.Path(filename).stem.replace('-', ' ').replace('_', ' ')
-                if generated_alt: # If stem is not empty
+                if generated_alt:
                     token.content = generated_alt
-                elif filename: # If stem is empty but filename exists (e.g. ".png" was the name)
-                     token.content = filename # Fallback to full filename
-                else: # If filename is also empty (unlikely for valid src)
-                    token.content = "image" # Generic fallback
-            except Exception:
+                elif filename:
+                     token.content = filename
+                else:
+                    token.content = "image"
+            except (TypeError, ValueError):
                 # In case of any error with path processing, fallback to a generic alt text if current is bad
                 if not alt_text.strip() or alt_text.strip().lower() == "img":
                     token.content = "image" # Generic fallback
         
         # Call the original image renderer with potentially modified token.content for alt text
-        return original_image_renderer(tokens, idx, options, env, self)
+        return original_image_renderer(tokens, idx, options, env)
 
     md_it.renderer.rules['image'] = custom_image_renderer
     
     return Div(NotStr(md_it.render(s)))
 
-
-def preprocess_markdown_headings(md_content: str) -> str:
-    """
-    Shifts Markdown headings down by one level (e.g., H1 to H2, H2 to H3, etc.)
-    to ensure post content starts appropriately under the site's main H1.
-    Order of substitution is important to prevent multiple shifts on the same line.
-    """
-    # Shift H5 -> H6 (if H6 is supported, otherwise they become plain text or similar)
-    md_content = re.sub(r"^(#####\s)", r"###### ", md_content, flags=re.MULTILINE)
-    # Shift H4 -> H5
-    md_content = re.sub(r"^(####\s)", r"##### ", md_content, flags=re.MULTILINE)
-    # Shift H3 -> H4
-    md_content = re.sub(r"^(###\s)", r"#### ", md_content, flags=re.MULTILINE)
-    # Shift H2 -> H3
-    md_content = re.sub(r"^(##\s)", r"### ", md_content, flags=re.MULTILINE)
-    # Shift H1 -> H2
-    md_content = re.sub(r"^(#\s)", r"## ", md_content, flags=re.MULTILINE)
-    return md_content
 
 @app.get("/")
 def home():
@@ -352,9 +333,6 @@ def get_post(post: str):
         return RedirectResponse(url="/")
     md_file = frontmatter.load(post_path)
     
-    # Preprocess headings in Markdown content to ensure they start from H2
-    processed_content = preprocess_markdown_headings(md_file.content)
-    
     return get_base(
         (
             *Socials(
@@ -364,7 +342,7 @@ def get_post(post: str):
                 twitter_site="@xceron_",
                 image=md_file["image"] if "image" in md_file else "",
             ),
-            Markdown(processed_content), # Pass preprocessed content
+            Markdown(md_file.content), # Pass preprocessed content
         )
     )
 
