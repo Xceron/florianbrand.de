@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://florianbrand.de/</id>
   <title>Florian Brand</title>
-  <updated>2025-03-28T06:35:03.719102+00:00</updated>
+  <updated>2025-05-21T13:23:05.093161+00:00</updated>
   <author>
     <name>Florian Brand</name>
     <email>privat@florianbrand.de</email>
@@ -15,7 +15,7 @@
   <entry>
     <id>https://florianbrand.de/posts/fasthtml-intro</id>
     <title>How FastHTML sparked my joy in web development</title>
-    <updated>2025-03-28T06:35:03.777783+00:00</updated>
+    <updated>2025-05-21T13:23:05.146229+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -75,12 +75,12 @@ But in PyCharm, this feature does not work correctly, as changes either don't ap
 Turns out it's a <a href="https://youtrack.jetbrains.com/issue/PY-60962/os.killpid-signal.CRTLCEVENT-ignored-when-running-python-program-from-Pycharm">known bug</a>, which is not yet fixed.
 A workaround is to open the run configuration and enabling the option <code>Emulate terminal in output console</code> (hidden under <code>Modify options</code>).<sup id="fnref:pycharm"><a class="footnote-ref" href="#fn:pycharm">1</a></sup>
 This will, however, make the terminal output harder to read, as the ANSI escape sequences, which are used for colored output, are displayed and not rendered.
-<img alt="img" src="img/fasthtml-intro-ansi.png" /></p>
+<img alt="Terminal output showing ANSI escape codes in PyCharm console" src="img/fasthtml-intro-ansi.png" /></p>
 <p>Speaking of editors: At first glance, FastHTML code looks unconventional in a Python editor.
 This unconventional look is due to two main factors. First, the recommended way to import most of FastHTMLs' functionality with <code>from fasthtml.common import *</code>. Second, the fact that (nested) HTML tags take up a lot of space rather fast means that they take up a lot of visual space.
 The first issue results in linters like pylance or ruff not liking the code, as PEP8 recommends to import only the needed functions<sup id="fnref:imports"><a class="footnote-ref" href="#fn:imports">2</a></sup>.
 To illustrate the second issue, here is some code of the FastHTML landing page:
-<img alt="img" src="img/fasthtml-intro-code.png" /></p>
+<img alt="Screenshot of FastHTML code example showing nested Python function calls for HTML tags" src="img/fasthtml-intro-code.png" /></p>
 <p>While it is valid code, it <em>feels</em> weird to see inside a Python file and gets some time to get used to.</p>
 <p>Overall, these are not really issues in the power of the AnswerAI team, which underlines how great the framework already is and the overall potential of FastHTML.</p>
 <h2 id="becoming-productive-with-fasthtml">Becoming productive with FastHTML</h2>
@@ -97,10 +97,10 @@ For instance, when I needed to redirect to the home page on a 404 error, I simpl
 <p>Beyond the coding aspects, FastHTML impresses with its minimal resource requirements.
 I run this site on a small VPS (2 vCores, 2GB RAM, more context in the <a href="#deployment">deployment section</a>).
 When idle, the usage looks like this<sup id="fnref:usage"><a class="footnote-ref" href="#fn:usage">3</a></sup>:
-<img alt="img" src="img/fasthtml-intro-lzd.png" /></p>
+<img alt="Screenshot of lazydocker interface showing low resource usage for the FastHTML site" src="img/fasthtml-intro-lzd.png" /></p>
 <p>Of course the idle state of a small site is not impressive.
 Hitting the front page of hackernews and handling it without breaking a sweat, however, is:
-<img alt="img" src="img/fasthtml-intro-jh-tweet.png" /></p>
+<img alt="Screenshot of Jeremy Howard's tweet about FastHTML's performance on Hacker News" src="img/fasthtml-intro-jh-tweet.png" /></p>
 <h2 id="resources">Resources</h2>
 <p>There are already some amazing resources to get started with FastHTML:</p>
 <ul>
@@ -207,7 +207,7 @@ I will watch the development of FastHTML closely and can't wait to see where the
   <entry>
     <id>https://florianbrand.de/posts/uv-intro</id>
     <title>Sane Python dependency management with uv</title>
-    <updated>2025-03-28T06:35:03.770761+00:00</updated>
+    <updated>2025-05-21T13:23:05.139142+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -340,7 +340,7 @@ I think it's a great tool and, similar to ruff, will see widespread adoption in 
   <entry>
     <id>https://florianbrand.de/posts/llm-programmer-tutorial</id>
     <title>A Guide to LLMs for Programmers</title>
-    <updated>2025-03-28T06:35:03.757204+00:00</updated>
+    <updated>2025-05-21T13:23:05.125213+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
@@ -512,7 +512,7 @@ Since the release of 3.5 Sonnet, I found myself writing a lot of simple scripts 
   <entry>
     <id>https://florianbrand.de/posts/odr</id>
     <title>Using OpenAI's Deep Research to save Time and Money</title>
-    <updated>2025-03-28T06:35:03.720283+00:00</updated>
+    <updated>2025-05-21T13:23:05.094174+00:00</updated>
     <author>
       <name>Florian Brand</name>
       <email>privat@florianbrand.de</email>
