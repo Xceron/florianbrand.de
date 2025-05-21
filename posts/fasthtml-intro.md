@@ -71,13 +71,13 @@ But in PyCharm, this feature does not work correctly, as changes either don't ap
 Turns out it's a [known bug](https://youtrack.jetbrains.com/issue/PY-60962/os.killpid-signal.CRTLCEVENT-ignored-when-running-python-program-from-Pycharm), which is not yet fixed.
 A workaround is to open the run configuration and enabling the option `Emulate terminal in output console` (hidden under `Modify options`).[^pycharm]
 This will, however, make the terminal output harder to read, as the ANSI escape sequences, which are used for colored output, are displayed and not rendered.
-![img](img/fasthtml-intro-ansi.png)
+![Terminal output showing ANSI escape codes in PyCharm console](img/fasthtml-intro-ansi.png)
 
 Speaking of editors: At first glance, FastHTML code looks unconventional in a Python editor.
 This unconventional look is due to two main factors. First, the recommended way to import most of FastHTMLs' functionality with `from fasthtml.common import *`. Second, the fact that (nested) HTML tags take up a lot of space rather fast means that they take up a lot of visual space.
 The first issue results in linters like pylance or ruff not liking the code, as PEP8 recommends to import only the needed functions[^imports].
 To illustrate the second issue, here is some code of the FastHTML landing page:
-![img](img/fasthtml-intro-code.png)
+![Screenshot of FastHTML code example showing nested Python function calls for HTML tags](img/fasthtml-intro-code.png)
 
 While it is valid code, it *feels* weird to see inside a Python file and gets some time to get used to.
 
@@ -99,11 +99,11 @@ For instance, when I needed to redirect to the home page on a 404 error, I simpl
 Beyond the coding aspects, FastHTML impresses with its minimal resource requirements.
 I run this site on a small VPS (2 vCores, 2GB RAM, more context in the [deployment section](#deployment)).
 When idle, the usage looks like this[^usage]:
-![img](img/fasthtml-intro-lzd.png)
+![Screenshot of lazydocker interface showing low resource usage for the FastHTML site](img/fasthtml-intro-lzd.png)
 
 Of course the idle state of a small site is not impressive.
 Hitting the front page of hackernews and handling it without breaking a sweat, however, is:
-![img](img/fasthtml-intro-jh-tweet.png)
+![Screenshot of Jeremy Howard's tweet about FastHTML's performance on Hacker News](img/fasthtml-intro-jh-tweet.png)
 
 ## Resources
 
